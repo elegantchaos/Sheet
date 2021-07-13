@@ -5,15 +5,35 @@
 
 import SwiftUI
 
+extension Text {
+    init(string: String?) {
+        self.init(string ?? "")
+    }
+    
+    init(_ int: Int16?) {
+        self.init(Int(int ?? 0), format: .number)
+    }
+}
 
 struct SheetView: View {
     @ObservedObject var sheet: CharacterSheet
     
-
+    let labels = ["race", "gender"]
     
     var body: some View {
+        
+        
         Text(sheet.name!)
             .font(.largeTitle)
+        
+        HStack {
+            ForEach(labels, id: \.self) { label in
+                if let string = sheet.string(withKey: label) {
+                    Text(label)
+                    Text(string)
+                }
+            }
+        }
         
         HStack {
             StatsView(sheet: sheet)

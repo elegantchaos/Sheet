@@ -13,6 +13,15 @@ extension CharacterSheet {
     func stat(_ kind: Stat.Kind) -> Stat {
         Stat(sheet: self, kind: kind)
     }
+    
+    func randomize() {
+        for kind in Stat.Kind.allCases {
+            let stat = stat(kind)
+            stat.randomize()
+        }
+        
+        try? managedObjectContext?.save()
+    }
 }
 
 extension CharacterSheet {

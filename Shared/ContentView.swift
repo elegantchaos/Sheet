@@ -16,6 +16,7 @@ struct ContentView: View {
     var body: some View {
         if items.count > 0 {
             SheetView(sheet: items.first!)
+                .padding()
         } else {
             Button(action: { _ = CharacterSheet(context: viewContext) }) {
                 Text("New Sheet")

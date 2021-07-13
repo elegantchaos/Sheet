@@ -5,38 +5,38 @@
 
 import SwiftUI
 
-extension Text {
-    init(string: String?) {
-        self.init(string ?? "")
-    }
-    
-    init(_ int: Int16?) {
-        self.init(Int(int ?? 0), format: .number)
-    }
-}
-
 struct SheetView: View {
     @ObservedObject var sheet: CharacterSheet
     
     let labels = ["race", "gender"]
+    
+    var detailKeys: [BasicFantasy.Detail] {
+        BasicFantasy.Detail.allCases.filter({ sheet.has(key: $0.rawValue) })
+    }
     
     var body: some View {
         
         
         Text(sheet.name!)
             .font(.largeTitle)
-        
-        HStack {
-            ForEach(labels, id: \.self) { label in
-                if let string = sheet.string(withKey: label) {
-                    Text(label)
+
+        let keys = detailKeys
+        LazyVGrid(columns: [GridItem](repeating: GridItem(.flexible()), count: keys.count)) {
+            ForEach(keys) { key in
+                Text(key.rawValue)
+            }
+
+            ForEach(keys) { key in
+                if let string = sheet.string(withKey: key.rawValue) {
                     Text(string)
+                } else if let integer = sheet.integer(withKey: key.rawValue) {
+                    Text("\(integer)")
                 }
             }
         }
         
         HStack {
-            StatsView(sheet: sheet)
+            AbilitiesView(sheet: sheet)
             
             Spacer()
                 .frame(maxWidth: .infinity)

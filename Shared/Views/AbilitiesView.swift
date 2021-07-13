@@ -5,9 +5,7 @@
 
 import SwiftUI
 
-let abilityKeys = ["strength", "intelligence", "wisdom", "dexterity", "constitution", "charisma"]
-
-struct StatsView: View {
+struct AbilitiesView: View {
     @ObservedObject var sheet: CharacterSheet
 
     static let statFormatter =
@@ -17,8 +15,8 @@ struct StatsView: View {
     var body: some View {
         VStack {
             LazyVGrid(columns: [GridItem(.fixed(128)), GridItem(.fixed(32)), GridItem(.fixed(32))]) {
-                ForEach(Stat.Kind.allCases) { kind in
-                    let stat = Stat(sheet: sheet, kind: kind)
+                ForEach(Ability.Kind.allCases) { kind in
+                    let stat = Ability(sheet: sheet, kind: kind)
 
                     HStack {
                         Spacer()

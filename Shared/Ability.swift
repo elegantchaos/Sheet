@@ -6,7 +6,7 @@
 import Foundation
 import SwiftUI
 
-struct Stat {
+struct Ability {
     let sheet: CharacterSheet
     let kind: Kind
     
@@ -26,15 +26,8 @@ struct Stat {
         case charisma
     }
     
-    var label: String { // TODO: translation
-        switch kind {
-            case .strength: return "Strength"
-            case .intelligence: return "Intelligence"
-            case .wisdom: return "Wisdom"
-            case .dexterity: return "Dexterity"
-            case .constitution: return "Consitution"
-            case .charisma: return "Charisma"
-        }
+    var label: String {
+        return kind.rawValue.capitalized
     }
     
     var value: Int {
@@ -80,7 +73,7 @@ struct Stat {
     }
 }
 
-extension Stat.Kind: Identifiable {
+extension Ability.Kind: Identifiable {
     var id: String { rawValue }
 }
 

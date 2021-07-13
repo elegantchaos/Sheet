@@ -10,8 +10,13 @@ extension CharacterSheet {
         uuid = UUID()
     }
     
-    func stat(_ kind: Stat.Kind) -> Stat {
-        Stat(sheet: self, kind: kind)
+    func stat(_ kind: Ability.Kind) -> Ability {
+        Ability(sheet: self, kind: kind)
+    }
+    
+    func has(key: String) -> Bool {
+        guard let stats = stats as? Set<CharacterStat> else { return false}
+        return stats.contains(where: { $0.key == key })
     }
     
     func string(withKey key: String) -> String? {
@@ -53,7 +58,7 @@ extension CharacterSheet {
     }
 
     func randomize() {
-        for kind in Stat.Kind.allCases {
+        for kind in Ability.Kind.allCases {
             let stat = stat(kind)
             stat.randomize()
         }

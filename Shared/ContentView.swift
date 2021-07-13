@@ -17,11 +17,15 @@ struct ContentView: View {
     private var items: FetchedResults<CharacterSheet>
 
     var body: some View {
-        List {
-            ForEach(items) { sheet in
-                Text("\(sheet.name!)")
+        NavigationView {
+            List {
+                ForEach(items) { sheet in
+                    NavigationLink(destination: SheetView(sheet: sheet)) {
+                        Text("\(sheet.name!)")
+                    }
+                }
+                .onDelete(perform: deleteItems)
             }
-            .onDelete(perform: deleteItems)
         }
         .toolbar {
             #if os(iOS)

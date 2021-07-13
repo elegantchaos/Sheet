@@ -1,9 +1,7 @@
-//
-//  Persistence.swift
-//  Shared
-//
-//  Created by Sam Deane on 13/07/2021.
-//
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+//  Created by Sam Deane on 13/07/21.
+//  All code (c) 2021 - present day, Elegant Chaos Limited.
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import CoreData
 

@@ -1,12 +1,23 @@
-//
-//  CharacterSheet.swift
-//  Sheet
-//
-//  Created by Sam Deane on 13/07/2021.
-//  Copyright © 2021 Elegant Chaos. All rights reserved.
-//
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+//  Created by Sam Deane on 13/07/21.
+//  All code (c) 2021 - present day, Elegant Chaos Limited.
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Foundation
 
 extension CharacterSheet {
+    public override func awakeFromInsert() {
+        uuid = UUID()
+    }
+    
+    func stat(_ kind: Stat.Kind) -> Stat {
+        Stat(sheet: self, kind: kind)
+    }
+}
+
+extension CharacterSheet {
+    public var id: String {
+        uuid = uuid ?? UUID()
+        return uuid!.uuidString
+    }
 }

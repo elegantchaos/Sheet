@@ -27,6 +27,8 @@
 		8BFDFE08269DA8070091F150 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8BFDFE0A269DA8070091F150 /* Localizable.strings */; };
 		8BFDFE0D269DA9C60091F150 /* CharacterSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFDFE0C269DA9C60091F150 /* CharacterSheet.swift */; };
 		8BFDFE0E269DA9C60091F150 /* CharacterSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFDFE0C269DA9C60091F150 /* CharacterSheet.swift */; };
+		8BFDFE10269DB3160091F150 /* IndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFDFE0F269DB3160091F150 /* IndexView.swift */; };
+		8BFDFE11269DB3160091F150 /* IndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFDFE0F269DB3160091F150 /* IndexView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,7 @@
 		8BFDFE09269DA8070091F150 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		8BFDFE0B269DA8340091F150 /* Sheet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sheet.entitlements; sourceTree = "<group>"; };
 		8BFDFE0C269DA9C60091F150 /* CharacterSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSheet.swift; sourceTree = "<group>"; };
+		8BFDFE0F269DB3160091F150 /* IndexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +117,7 @@
 				8BFDFDC3269DA25B0091F150 /* SheetApp.swift */,
 				8BFDFDC4269DA25B0091F150 /* ContentView.swift */,
 				8BFDFE01269DA6BA0091F150 /* SheetView.swift */,
+				8BFDFE0F269DB3160091F150 /* IndexView.swift */,
 				8BFDFDC5269DA25B0091F150 /* Persistence.swift */,
 				8BFDFDFE269DA6070091F150 /* Stat.swift */,
 				8BFDFE0C269DA9C60091F150 /* CharacterSheet.swift */,
@@ -317,6 +321,7 @@
 				8BFDFDE8269DA25D0091F150 /* SheetApp.swift in Sources */,
 				8BFDFDFF269DA6070091F150 /* Stat.swift in Sources */,
 				8BFDFE02269DA6BA0091F150 /* SheetView.swift in Sources */,
+				8BFDFE10269DB3160091F150 /* IndexView.swift in Sources */,
 				8BFDFE0D269DA9C60091F150 /* CharacterSheet.swift in Sources */,
 				8BFDFDEA269DA25D0091F150 /* ContentView.swift in Sources */,
 			);
@@ -331,6 +336,7 @@
 				8BFDFDE9269DA25D0091F150 /* SheetApp.swift in Sources */,
 				8BFDFE00269DA6070091F150 /* Stat.swift in Sources */,
 				8BFDFE03269DA6BA0091F150 /* SheetView.swift in Sources */,
+				8BFDFE11269DB3160091F150 /* IndexView.swift in Sources */,
 				8BFDFE0E269DA9C60091F150 /* CharacterSheet.swift in Sources */,
 				8BFDFDEB269DA25D0091F150 /* ContentView.swift in Sources */,
 			);

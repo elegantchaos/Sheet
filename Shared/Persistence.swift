@@ -13,9 +13,8 @@ struct PersistenceController {
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
             let newItem = CharacterSheet(context: viewContext)
-            newItem.name = "Untitled"
-            
         }
+        
         do {
             try viewContext.save()
         } catch {

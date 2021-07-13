@@ -17,7 +17,7 @@ struct Stat {
         return formatter
     }()
     
-    enum Kind: Int, CaseIterable {
+    enum Kind: String, CaseIterable {
         case strength
         case intelligence
         case wisdom
@@ -39,14 +39,7 @@ struct Stat {
     
     var value: Int {
         get {
-            switch kind {
-                case .strength: return Int(sheet.strength)
-                case .intelligence: return Int(sheet.intelligence)
-                case .wisdom: return Int(sheet.wisdom)
-                case .dexterity: return Int(sheet.dexterity)
-                case .constitution: return Int(sheet.constitution)
-                case .charisma: return Int(sheet.charisma)
-            }
+            sheet.integer(withKey: kind.rawValue) ?? 0
         }
         
         set {
@@ -55,14 +48,7 @@ struct Stat {
     }
     
     func update(to newValue: Int) {
-        switch kind {
-            case .strength: sheet.strength = Int16(newValue)
-            case .intelligence: sheet.intelligence = Int16(newValue)
-            case .wisdom: sheet.wisdom = Int16(newValue)
-            case .dexterity: sheet.dexterity = Int16(newValue)
-            case .constitution: sheet.constitution = Int16(newValue)
-            case .charisma: sheet.charisma = Int16(newValue)
-        }
+        sheet.set(newValue, forKey: kind.rawValue)
     }
     
     var valueString: String {
@@ -95,6 +81,6 @@ struct Stat {
 }
 
 extension Stat.Kind: Identifiable {
-    var id: Int { rawValue }
+    var id: String { rawValue }
 }
 

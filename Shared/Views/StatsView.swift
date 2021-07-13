@@ -5,6 +5,8 @@
 
 import SwiftUI
 
+let abilityKeys = ["strength", "intelligence", "wisdom", "dexterity", "constitution", "charisma"]
+
 struct StatsView: View {
     @ObservedObject var sheet: CharacterSheet
 

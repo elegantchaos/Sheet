@@ -14,7 +14,7 @@ struct AbilitiesView: View {
 
     var body: some View {
         VStack {
-            LazyVGrid(columns: [GridItem(.fixed(128)), GridItem(.fixed(32)), GridItem(.fixed(32))]) {
+            LazyVGrid(columns: [GridItem(.fixed(128)), GridItem(.fixed(24)), GridItem(.fixed(24))]) {
                 ForEach(Ability.Kind.allCases) { kind in
                     let stat = Ability(sheet: sheet, kind: kind)
 
@@ -24,7 +24,8 @@ struct AbilitiesView: View {
                     }
 
                     Text(stat.valueString)
-                    
+                        .bold()
+
                     if stat.modifier != 0 {
                         Text(stat.modifier, format: Self.statFormatter)
                             .font(.footnote)

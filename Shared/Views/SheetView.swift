@@ -7,11 +7,10 @@ import SwiftUI
 
 struct SheetView: View {
     @ObservedObject var sheet: CharacterSheet
-    
-    let labels = ["race", "gender"]
+    @EnvironmentObject var savingThrows: SavingThrowTable
     
     var detailKeys: [BasicFantasy.Detail] {
-        BasicFantasy.Detail.allCases.filter({ sheet.has(key: $0.rawValue) })
+        BasicFantasy.topDetails.filter({ sheet.has(key: $0) })
     }
     
     var body: some View {
@@ -23,14 +22,16 @@ struct SheetView: View {
         let keys = detailKeys
         LazyVGrid(columns: [GridItem](repeating: GridItem(.flexible()), count: keys.count)) {
             ForEach(keys) { key in
-                Text(key.rawValue)
+                Text(LocalizedStringKey(key.rawValue))
             }
 
             ForEach(keys) { key in
-                if let string = sheet.string(withKey: key.rawValue) {
+                if let string = sheet.string(withKey: key) {
                     Text(string)
-                } else if let integer = sheet.integer(withKey: key.rawValue) {
+                        .bold()
+                } else if let integer = sheet.integer(withKey: key) {
                     Text("\(integer)")
+                        .bold()
                 }
             }
         }
@@ -38,6 +39,17 @@ struct SheetView: View {
         HStack {
             AbilitiesView(sheet: sheet)
             
+            if let cclass = sheet.characterClass, let level = sheet.integer(withKey: .level) {
+                VStack {
+                    ForEach(BasicFantasy.SavingThrow.allCases) { savingThrow in
+                        if let value = savingThrows.value(for: savingThrow, class: cclass, level: level) {
+                            Text(savingThrow.label)
+                            Text(value, format: .number)
+                        }
+                    }
+                }
+            }
+
             Spacer()
                 .frame(maxWidth: .infinity)
         }

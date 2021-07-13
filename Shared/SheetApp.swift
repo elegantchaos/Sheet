@@ -8,11 +8,15 @@ import SwiftUI
 @main
 struct SheetApp: App {
     let persistenceController = PersistenceController.shared
-
+    
     var body: some Scene {
+        let url = Bundle.main.url(forResource: "SavingThrows", withExtension: "json")
+        let savingThrows = try! SavingThrowTable(url: url!)
+
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(savingThrows)
         }
     }
 }

@@ -4,7 +4,7 @@ import Foundation
 typealias ThrowEntries = [Int: [Int]]
 
 struct CodedSavingThrowTable: Codable {
-    public let classes: [String: ThrowEntries]
+    public let classes: [String: [Int:String]]
 }
 
 class SavingThrowTable: ObservableObject {
@@ -16,7 +16,8 @@ class SavingThrowTable: ObservableObject {
         var classes: [BasicFantasy.CharacterClass: ThrowEntries] = [:]
         for (key, value) in decoded.classes {
             if let cclass = BasicFantasy.CharacterClass(rawValue: key) {
-                classes[cclass] = value
+                classes[cclass] = value.mapValues({ $0.split(separator: " ").map({ Int($0)! }) })
+                
             }
         }
         self.classes = classes

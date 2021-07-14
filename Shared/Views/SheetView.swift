@@ -7,60 +7,74 @@ import SwiftUI
 
 struct SheetView: View {
     @ObservedObject var sheet: CharacterSheet
-    @EnvironmentObject var savingThrows: SavingThrowTable
-    
+    @State var editing = false
+    @FocusState var nameFocussed: Bool
+
     var detailKeys: [BasicFantasy.Detail] {
         BasicFantasy.topDetails.filter({ sheet.has(key: $0) })
     }
     
     var body: some View {
         
-        
-        Text(sheet.name!)
+        VStack {
+            HStack {
+                Spacer()
+                if editing {
+                    TextField("Name", text: $sheet.editableName)
+                        .multilineTextAlignment(.center)
+                        .focused($nameFocussed)
+                } else {
+                    Text(sheet.editableName)
+                }
+                Spacer()
+            }
             .font(.largeTitle)
 
-        let keys = detailKeys
-        LazyVGrid(columns: [GridItem](repeating: GridItem(.flexible()), count: keys.count)) {
-            ForEach(keys) { key in
-                Text(LocalizedStringKey(key.rawValue))
-            }
-
-            ForEach(keys) { key in
-                if let string = sheet.string(withKey: key) {
-                    Text(string)
-                        .bold()
-                } else if let integer = sheet.integer(withKey: key) {
-                    Text("\(integer)")
-                        .bold()
+            let keys = detailKeys
+            LazyVGrid(columns: [GridItem](repeating: GridItem(.flexible()), count: keys.count)) {
+                ForEach(keys) { key in
+                    Text(LocalizedStringKey(key.rawValue))
                 }
-            }
-        }
-        
-        HStack {
-            AbilitiesView(sheet: sheet)
-            
-            if let cclass = sheet.characterClass, let level = sheet.integer(withKey: .level) {
-                VStack {
-                    ForEach(BasicFantasy.SavingThrow.allCases) { savingThrow in
-                        if let value = savingThrows.value(for: savingThrow, class: cclass, level: level) {
-                            Text(savingThrow.label)
-                            Text(value, format: .number)
-                        }
+
+                ForEach(keys) { key in
+                    if let string = sheet.string(withKey: key) {
+                        Text(string)
+                            .bold()
+                    } else if let integer = sheet.integer(withKey: key) {
+                        Text("\(integer)")
+                            .bold()
                     }
                 }
             }
-
+            
+            HStack(alignment: .top) {
+                AbilitiesView(sheet: sheet)
+                SavingThrowsView(sheet: sheet)
+                Spacer()
+                    .frame(maxWidth: .infinity)
+            }
+            
             Spacer()
-                .frame(maxWidth: .infinity)
         }
-        
-        Spacer()
-        
-        Button(action: sheet.randomize) {
-            Text("Randomize")
+        .toolbar {
+            ToolbarItem(placement: .bottomBar) {
+                Button(action: sheet.randomize) {
+                    Text("Randomize")
+                }
+            }
+
+            ToolbarItem(placement: .bottomBar) {
+                Toggle("Edit", isOn: $editing)
+                    .onChange(of: editing) { value in
+                        nameFocussed = value
+                        print(nameFocussed)
+                    }
+                    .toggleStyle(SwitchToggleStyle())
+            }
+
         }
     }
-    
+
 }
 
 struct SheetView_Previews: PreviewProvider {

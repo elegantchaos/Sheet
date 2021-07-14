@@ -79,6 +79,11 @@ extension CharacterSheet {
 
         try? managedObjectContext?.save()
     }
+    
+    var editableName: String {
+        get { name ?? "" }
+        set { name = newValue }
+    }
 }
 
 extension CharacterSheet {

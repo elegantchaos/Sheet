@@ -10,3 +10,9 @@ Stat0 = "Strength";
 Stat1 = "Intelligence";
 
 hitsAndDamage = "hits";
+
+deathRayOrPoison = "Death Ray or Poison";
+magicWands = "Magic Wands";
+paralysisOrPetrify = "Paralysis or Petrify";
+dragonBreath = "Dragon Breath";
+spells = "Spells";

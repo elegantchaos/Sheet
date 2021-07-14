@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 struct BasicFantasy {
     enum Detail: String, CaseIterable, Identifiable {
@@ -46,18 +47,18 @@ struct BasicFantasy {
         var id: String { rawValue }
     }
     
-    enum SavingThrow: Int, CaseIterable, Identifiable {
+    enum SavingThrow: String, CaseIterable, Identifiable {
         case deathRayOrPoison
         case magicWands
         case paralysisOrPetrify
         case dragonBreath
         case spells
 
-        var label: String {
-            "Throw\(rawValue)"
+        var label: LocalizedStringKey {
+            LocalizedStringKey(rawValue)
         }
 
-        var id: Int { rawValue }
+        var id: String { rawValue }
     }
 }
 

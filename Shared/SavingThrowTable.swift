@@ -38,7 +38,7 @@ struct SavingThrowTable {
     func value(for throwIndex: Int, `class` cclass: String, race: String, level: Int) -> Int? {
         guard let entries = classValues[cclass] else { return nil }
     
-        let modifiers = raceModifiers[race] ?? [0, 0, 0, 0, 0]
+        let modifiers = raceModifiers[race.lowercased()] ?? [0, 0, 0, 0, 0]
             
         var entryLevel = level
         while entryLevel > 0 {

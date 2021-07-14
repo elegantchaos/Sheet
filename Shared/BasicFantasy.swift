@@ -58,6 +58,16 @@ class BasicFantasy: ObservableObject, GameRules {
             }
             return result
         }
+        
+        var isCalculated: Bool {
+            switch self {
+                case .hitsAndDamage:
+                    return true
+                    
+                default:
+                    return false
+            }
+        }
     }
     
     let topStats: [Stat] = [.race, .gender, .class, .level, .age, .hitsAndDamage]

@@ -5,7 +5,21 @@
 
 import Foundation
 import SwiftUI
+import CoreData
 
+extension Set where Element == CharacterStat {
+    mutating func stat(forKey key: String, context: NSManagedObjectContext) -> CharacterStat {
+        if let stat = first(where: { $0.key == key }) {
+            return stat
+        } else {
+            let stat = CharacterStat(context: context)
+            stat.key = key
+            insert(stat)
+            return stat
+        }
+    }
+}
+    
 extension CharacterSheet {
     public override func awakeFromInsert() {
         uuid = UUID()
@@ -31,28 +45,21 @@ extension CharacterSheet {
 
     func set(_ string: String, forKey key: String) {
         if var stats = stats as? Set<CharacterStat> {
-            if let stat = stats.first(where: { $0.key == key }) {
+            let stat = stats.stat(forKey: key, context: managedObjectContext!)
+            if stat.string != string {
+                objectWillChange.send()
                 stat.string = string
-            } else {
-                let stat = CharacterStat(context: self.managedObjectContext!)
-                stat.key = key
-                stat.string = string
-                stats.insert(stat)
-                self.stats = stats as NSSet
             }
         }
     }
 
     func set(_ integer: Int, forKey key: String) {
         if var stats = stats as? Set<CharacterStat> {
-            if let stat = stats.first(where: { $0.key == key }) {
-                stat.integer = Int64(integer)
-            } else {
-                let stat = CharacterStat(context: self.managedObjectContext!)
-                stat.key = key
-                stat.integer = Int64(integer)
-                stats.insert(stat)
-                self.stats = stats as NSSet
+            let stat = stats.stat(forKey: key, context: managedObjectContext!)
+            let newValue = Int64(integer)
+            if stat.integer != newValue {
+                objectWillChange.send()
+                stat.integer = newValue
             }
         }
     }
@@ -76,6 +83,9 @@ extension CharacterSheet {
             )
     }
 
+    func save() throws {
+        try managedObjectContext?.save()
+    }
 }
 
 extension CharacterSheet {

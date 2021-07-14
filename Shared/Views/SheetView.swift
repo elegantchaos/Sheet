@@ -30,14 +30,21 @@ struct SheetView: View {
                 }
 
                 ForEach(keys) { key in
-                    if let string = sheet.string(forKey: key) {
-                        Text(string)
-                            .bold()
-                    } else if let integer = sheet.integer(forKey: key) {
-                        Text("\(integer)")
-                            .bold()
+                    if key.isCalculated {
+                        if let string = sheet.string(forKey: key) {
+                            Text(string)
+                        } else if let integer = sheet.integer(forKey: key) {
+                            Text("\(integer)")
+                        }
+                    } else {
+                        if let _ = sheet.string(forKey: key) {
+                            EditableStringView(value: sheet.editableString(forKey: key))
+                        } else {
+                            EditableIntegerView(value: sheet.editableInteger(forKey: key))
+                        }
                     }
                 }
+                .font(.body.weight(.bold))
             }
             
             HStack(alignment: .top) {
@@ -60,7 +67,9 @@ struct SheetView: View {
                 Toggle("Edit", isOn: $context.editing)
                     .onChange(of: context.editing) { value in
                         nameFocussed = value
-                        print(nameFocussed)
+                        if !value {
+                            try? sheet.save()
+                        }
                     }
                     .toggleStyle(SwitchToggleStyle())
             }

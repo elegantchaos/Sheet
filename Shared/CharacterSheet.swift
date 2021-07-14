@@ -11,10 +11,6 @@ extension CharacterSheet {
         uuid = UUID()
     }
     
-    func stat(_ kind: Ability.Kind) -> Ability {
-        Ability(sheet: self, kind: kind)
-    }
-    
     func has(key: String) -> Bool {
         guard let stats = stats as? Set<CharacterStat> else { return false}
         return stats.contains(where: { $0.key == key })
@@ -59,26 +55,6 @@ extension CharacterSheet {
                 self.stats = stats as NSSet
             }
         }
-    }
-
-    func randomize() {
-        objectWillChange.send()
-
-        for kind in Ability.Kind.allCases {
-            let stat = stat(kind)
-            stat.randomize()
-        }
-        
-        set("human", forKey: .race)
-        set("male", forKey: .gender)
-        set(BasicFantasy.CharacterClass.allCases.randomElement()!.rawValue, forKey: .class)
-        set(Int.random(in: 1...20), forKey: .level)
-        set(Int.random(in: 16...100), forKey: .age)
-        let hits = Int.random(in: 16...100)
-        set(hits, forKey: .hits)
-        set(Int.random(in: 0...hits), forKey: .damage)
-
-        try? managedObjectContext?.save()
     }
     
     var editableName: String {

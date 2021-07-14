@@ -7,8 +7,8 @@ import SwiftUI
 
 struct SavingThrowsView: View {
     @ObservedObject var sheet: CharacterSheet
-    @EnvironmentObject var savingThrows: SavingThrowTable
-
+    @EnvironmentObject var system: GameSystem
+    
     static let statFormatter =
     IntegerFormatStyle()
         .sign(strategy: .always(includingZero: false))
@@ -18,7 +18,7 @@ struct SavingThrowsView: View {
             if let cclass = sheet.characterClass, let level = sheet.integer(forKey: .level) {
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.fixed(24))]) {
                     ForEach(BasicFantasy.SavingThrow.allCases) { savingThrow in
-                        if let value = savingThrows.value(for: savingThrow, class: cclass, level: level) {
+                        if let value = system.savingThrowValue(for: savingThrow, class: cclass, level: level) {
                             HStack {
                                 Spacer()
                                 Text(savingThrow.label)

@@ -7,7 +7,8 @@ import SwiftUI
 
 struct AbilitiesView: View {
     @ObservedObject var sheet: CharacterSheet
-
+    @EnvironmentObject var system: GameSystem
+    
     static let statFormatter =
     IntegerFormatStyle()
         .sign(strategy: .always(includingZero: false))
@@ -15,7 +16,7 @@ struct AbilitiesView: View {
     var body: some View {
         VStack {
             LazyVGrid(columns: [GridItem(.fixed(128)), GridItem(.fixed(24)), GridItem(.fixed(24))]) {
-                ForEach(BasicFantasy.abilityDetails) { ability in
+                ForEach(system.abilityStats) { ability in
                     HStack {
                         Spacer()
                         Text(ability.label)

@@ -5,20 +5,29 @@
 
 import SwiftUI
 
+typealias GameSystem = BasicFantasy
+
 @main
 struct SheetApp: App {
     let persistenceController = PersistenceController.shared
     let context = Context()
+    let system: GameSystem
     
-    var body: some Scene {
+    init() {
         let url = Bundle.main.url(forResource: "SavingThrows", withExtension: "json")
         let savingThrows = try! SavingThrowTable(url: url!)
+        let system = BasicFantasy(savingThrows: savingThrows)
+
+        self.system = system
+    }
+    
+    var body: some Scene {
 
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environmentObject(savingThrows)
                 .environmentObject(context)
+                .environmentObject(system)
         }
     }
 }

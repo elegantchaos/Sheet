@@ -7,13 +7,11 @@ import SwiftUI
 
 struct SheetView: View {
     @EnvironmentObject var context: Context
+    @EnvironmentObject var system: GameSystem
+
     @ObservedObject var sheet: CharacterSheet
     @FocusState var nameFocussed: Bool
 
-    var detailKeys: [BasicFantasy.Detail] {
-        BasicFantasy.topDetails.filter({ sheet.has(key: $0) })
-    }
-    
     var body: some View {
         
         VStack {
@@ -25,7 +23,7 @@ struct SheetView: View {
             }
             .font(.largeTitle)
 
-            let keys = detailKeys
+            let keys = system.topStats
             LazyVGrid(columns: [GridItem](repeating: GridItem(.flexible()), count: keys.count)) {
                 ForEach(keys) { key in
                     Text(LocalizedStringKey(key.rawValue))
@@ -53,7 +51,7 @@ struct SheetView: View {
         }
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
-                Button(action: sheet.randomize) {
+                Button(action: { system.randomize(sheet: sheet) }) {
                     Text("Randomize")
                 }
             }
@@ -76,10 +74,12 @@ struct SheetView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
         let sheet = CharacterSheet(context: context)
-        sheet.randomize()
+        let system = BasicFantasy(savingThrows: SavingThrowTable())
+        system.randomize(sheet: sheet)
         
         return SheetView(sheet: sheet)
             .previewDevice("iPad Pro (11-inch) (3rd generation)")
             .environment(\.managedObjectContext, context)
+            .environmentObject(system)
     }
 }

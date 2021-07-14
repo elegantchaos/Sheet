@@ -15,7 +15,7 @@ struct SavingThrowsView: View {
     
     var body: some View {
         VStack {
-            if let cclass = sheet.characterClass, let level = sheet.integer(withKey: .level) {
+            if let cclass = sheet.characterClass, let level = sheet.integer(forKey: .level) {
                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.fixed(24))]) {
                     ForEach(BasicFantasy.SavingThrow.allCases) { savingThrow in
                         if let value = savingThrows.value(for: savingThrow, class: cclass, level: level) {

@@ -19,8 +19,7 @@ struct SheetView: View {
         VStack {
             HStack {
                 Spacer()
-                let nameBinding = sheet.editableString(forKey: "name")
-                EditableStringView(value: nameBinding)
+                EditableStringView(value: sheet.editableString(forKey: .name))
                     .focused($nameFocussed)
                 Spacer()
             }
@@ -33,10 +32,10 @@ struct SheetView: View {
                 }
 
                 ForEach(keys) { key in
-                    if let string = sheet.string(withKey: key) {
+                    if let string = sheet.string(forKey: key) {
                         Text(string)
                             .bold()
-                    } else if let integer = sheet.integer(withKey: key) {
+                    } else if let integer = sheet.integer(forKey: key) {
                         Text("\(integer)")
                             .bold()
                     }

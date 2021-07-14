@@ -15,23 +15,17 @@ struct AbilitiesView: View {
     var body: some View {
         VStack {
             LazyVGrid(columns: [GridItem(.fixed(128)), GridItem(.fixed(24)), GridItem(.fixed(24))]) {
-                ForEach(Ability.Kind.allCases) { kind in
-                    let stat = Ability(sheet: sheet, kind: kind)
-
+                ForEach(BasicFantasy.abilityDetails) { ability in
                     HStack {
                         Spacer()
-                        Text(stat.label)
+                        Text(ability.label)
                     }
 
-                    Text(stat.valueString)
-                        .bold()
+                    EditableIntegerView(value: sheet.editableInteger(forKey: ability))
+                        .font(.body.weight(.bold))
 
-                    if stat.modifier != 0 {
-                        Text(stat.modifier, format: Self.statFormatter)
-                            .font(.footnote)
-                    } else {
-                        Text("")
-                    }
+                    Text(sheet.modifier(for: ability))
+                        .font(.footnote)
                 }
             }
         }

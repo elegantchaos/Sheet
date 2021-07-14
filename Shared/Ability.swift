@@ -32,7 +32,7 @@ struct Ability {
     
     var value: Int {
         get {
-            sheet.integer(withKey: kind.rawValue) ?? 0
+            sheet.integer(forKey: kind.rawValue) ?? 0
         }
         
         set {

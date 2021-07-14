@@ -6,8 +6,8 @@
 import SwiftUI
 
 struct SheetView: View {
+    @EnvironmentObject var context: Context
     @ObservedObject var sheet: CharacterSheet
-    @State var editing = false
     @FocusState var nameFocussed: Bool
 
     var detailKeys: [BasicFantasy.Detail] {
@@ -19,13 +19,9 @@ struct SheetView: View {
         VStack {
             HStack {
                 Spacer()
-                if editing {
-                    TextField("Name", text: $sheet.editableName)
-                        .multilineTextAlignment(.center)
-                        .focused($nameFocussed)
-                } else {
-                    Text(sheet.editableName)
-                }
+                let nameBinding = sheet.editableString(forKey: "name")
+                EditableStringView(value: nameBinding)
+                    .focused($nameFocussed)
                 Spacer()
             }
             .font(.largeTitle)
@@ -64,8 +60,8 @@ struct SheetView: View {
             }
 
             ToolbarItem(placement: .bottomBar) {
-                Toggle("Edit", isOn: $editing)
-                    .onChange(of: editing) { value in
+                Toggle("Edit", isOn: $context.editing)
+                    .onChange(of: context.editing) { value in
                         nameFocussed = value
                         print(nameFocussed)
                     }

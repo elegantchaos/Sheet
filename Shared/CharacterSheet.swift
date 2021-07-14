@@ -4,6 +4,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Foundation
+import SwiftUI
 
 extension CharacterSheet {
     public override func awakeFromInsert() {
@@ -83,6 +84,13 @@ extension CharacterSheet {
     var editableName: String {
         get { name ?? "" }
         set { name = newValue }
+    }
+    
+    func editableString(forKey key: String) -> Binding<String> {
+        return Binding<String>(
+            get: { self.string(withKey: key) ?? "" },
+            set: { newValue in self.set(newValue, forKey: key) }
+            )
     }
 }
 

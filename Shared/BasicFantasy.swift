@@ -7,6 +7,12 @@ import Foundation
 import UIKit
 import SwiftUI
 
+protocol RawIdentifiable: RawRepresentable, Identifiable { }
+
+extension RawIdentifiable where RawValue == ID {
+    var id: ID { rawValue }
+}
+
 class BasicFantasy: ObservableObject, GameRules {
     let savingThrows: SavingThrowTable
     
@@ -57,16 +63,22 @@ class BasicFantasy: ObservableObject, GameRules {
     let topStats: [Stat] = [.race, .gender, .class, .level, .age, .hitsAndDamage]
     let abilityStats: [Stat] = [.strength, .intelligence, .wisdom, .dexterity, .constitution, .charisma]
     
-    enum CharacterClass: String, CaseIterable, Identifiable, Codable {
+    enum CharacterClass: String, CaseIterable, RawIdentifiable, Codable {
         case fighter
         case thief
         case mage
         case cleric
-        
-        var id: String { rawValue }
     }
     
-    enum SavingThrow: String, CaseIterable, Identifiable {
+    enum CharacterRace: String, CaseIterable, RawIdentifiable, Codable {
+        case human
+        case dwarf
+        case elf
+        case halfling
+    }
+    
+    
+    enum SavingThrow: String, CaseIterable, RawIdentifiable {
         case deathRayOrPoison
         case magicWands
         case paralysisOrPetrify
@@ -76,8 +88,6 @@ class BasicFantasy: ObservableObject, GameRules {
         var label: LocalizedStringKey {
             LocalizedStringKey(rawValue)
         }
-
-        var id: String { rawValue }
     }
 
     static let modifierFormatter: NumberFormatter = {
@@ -87,9 +97,9 @@ class BasicFantasy: ObservableObject, GameRules {
         return formatter
     }()
 
-    func savingThrowValue(for throwType: BasicFantasy.SavingThrow, `class` characterClass: BasicFantasy.CharacterClass, level: Int) -> Int? {
+    func savingThrowValue(for throwType: BasicFantasy.SavingThrow, `class` characterClass: BasicFantasy.CharacterClass, race: String, level: Int) -> Int? {
         let throwIndex = BasicFantasy.SavingThrow.allCases.firstIndex(of: throwType)!
-        return savingThrows.value(for: throwIndex, class: characterClass.rawValue, level: level)
+        return savingThrows.value(for: throwIndex, class: characterClass.rawValue, race: race, level: level)
     }
     
     func randomize(sheet: CharacterSheet) {

@@ -1,5 +1,9 @@
 
 {
+    "races": {
+        "halfling": "4 4 4 3 4"
+    },
+    
     "classes": {
         "cleric": {
             "01": "11 12 14 16 15",

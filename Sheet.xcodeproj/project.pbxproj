@@ -10,7 +10,7 @@
 		8B1577BE269DD5CE00073D0F /* AbilitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1577BD269DD5CE00073D0F /* AbilitiesView.swift */; };
 		8B1577C2269DE65300073D0F /* BasicFantasy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1577C1269DE65300073D0F /* BasicFantasy.swift */; };
 		8B1577C4269DFB5300073D0F /* SavingThrows.json in Sources */ = {isa = PBXBuildFile; fileRef = 8B1577C3269DFB5300073D0F /* SavingThrows.json */; };
-		8B1577C6269DFC0100073D0F /* SavingThrows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1577C5269DFC0100073D0F /* SavingThrows.swift */; };
+		8B1577C6269DFC0100073D0F /* SavingThrowTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1577C5269DFC0100073D0F /* SavingThrowTable.swift */; };
 		8B157853269DFEF400073D0F /* SavingThrows.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B1577C3269DFB5300073D0F /* SavingThrows.json */; };
 		8B1578E1269EF47D00073D0F /* SavingThrowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1578E0269EF47D00073D0F /* SavingThrowsView.swift */; };
 		8B1578E3269EFBEA00073D0F /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1578E2269EFBEA00073D0F /* Context.swift */; };
@@ -43,7 +43,7 @@
 		8B1577BD269DD5CE00073D0F /* AbilitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilitiesView.swift; sourceTree = "<group>"; };
 		8B1577C1269DE65300073D0F /* BasicFantasy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicFantasy.swift; sourceTree = "<group>"; };
 		8B1577C3269DFB5300073D0F /* SavingThrows.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SavingThrows.json; sourceTree = "<group>"; };
-		8B1577C5269DFC0100073D0F /* SavingThrows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingThrows.swift; sourceTree = "<group>"; };
+		8B1577C5269DFC0100073D0F /* SavingThrowTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingThrowTable.swift; sourceTree = "<group>"; };
 		8B1578E0269EF47D00073D0F /* SavingThrowsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingThrowsView.swift; sourceTree = "<group>"; };
 		8B1578E2269EFBEA00073D0F /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		8B1578E4269EFDB100073D0F /* EditableStringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableStringView.swift; sourceTree = "<group>"; };
@@ -120,13 +120,13 @@
 				8BFDFDC3269DA25B0091F150 /* SheetApp.swift */,
 				8B1578E2269EFBEA00073D0F /* Context.swift */,
 				8B1577C0269DD7F800073D0F /* Views */,
-				8BFDFE20269DD01F0091F150 /* Localizable.strings */,
-				8B1577C3269DFB5300073D0F /* SavingThrows.json */,
-				8B1577C5269DFC0100073D0F /* SavingThrows.swift */,
+				8B1577C5269DFC0100073D0F /* SavingThrowTable.swift */,
 				8BFDFDC5269DA25B0091F150 /* Persistence.swift */,
 				8BFDFE0C269DA9C60091F150 /* CharacterSheet.swift */,
 				8B1577C1269DE65300073D0F /* BasicFantasy.swift */,
 				8B1578E8269F2A1E00073D0F /* GameRules.swift */,
+				8BFDFE20269DD01F0091F150 /* Localizable.strings */,
+				8B1577C3269DFB5300073D0F /* SavingThrows.json */,
 				8BFDFDC6269DA25D0091F150 /* Assets.xcassets */,
 				8BFDFDC1269DA25B0091F150 /* Sheet.xcdatamodeld */,
 			);
@@ -292,7 +292,7 @@
 				8BFDFE10269DB3160091F150 /* IndexView.swift in Sources */,
 				8B1578E5269EFDB100073D0F /* EditableStringView.swift in Sources */,
 				8BFDFE0D269DA9C60091F150 /* CharacterSheet.swift in Sources */,
-				8B1577C6269DFC0100073D0F /* SavingThrows.swift in Sources */,
+				8B1577C6269DFC0100073D0F /* SavingThrowTable.swift in Sources */,
 				8BFDFDEA269DA25D0091F150 /* ContentView.swift in Sources */,
 				8B1577C4269DFB5300073D0F /* SavingThrows.json in Sources */,
 				8B1577BE269DD5CE00073D0F /* AbilitiesView.swift in Sources */,

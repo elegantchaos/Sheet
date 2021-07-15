@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19178.1" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="CharacterItem" representedClassName="CharacterItem" syncable="YES" codeGenerationType="class">
+        <attribute name="cost" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="count" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="type" optional="YES" attributeType="String"/>
+        <attribute name="weight" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="sheet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CharacterSheet" inverseName="items" inverseEntity="CharacterSheet"/>
+    </entity>
     <entity name="CharacterSheet" representedClassName="CharacterSheet" syncable="YES" codeGenerationType="class">
         <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CharacterItem" inverseName="sheet" inverseEntity="CharacterItem"/>
         <relationship name="stats" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CharacterStat" inverseName="sheet" inverseEntity="CharacterStat"/>
     </entity>
     <entity name="CharacterStat" representedClassName="CharacterStat" syncable="YES" codeGenerationType="class">
@@ -11,7 +20,8 @@
         <relationship name="sheet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CharacterSheet" inverseName="stats" inverseEntity="CharacterSheet"/>
     </entity>
     <elements>
-        <element name="CharacterSheet" positionX="-63" positionY="-18" width="128" height="59"/>
+        <element name="CharacterSheet" positionX="-63" positionY="-18" width="128" height="74"/>
         <element name="CharacterStat" positionX="-63" positionY="90" width="128" height="89"/>
+        <element name="CharacterItem" positionX="-54" positionY="63" width="128" height="119"/>
     </elements>
 </model>

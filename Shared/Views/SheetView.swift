@@ -23,29 +23,8 @@ struct SheetView: View {
             }
             .font(.largeTitle)
 
-            let keys = system.topStats
-            LazyVGrid(columns: [GridItem](repeating: GridItem(.flexible()), count: keys.count)) {
-                ForEach(keys) { key in
-                    Text(LocalizedStringKey(key.rawValue))
-                }
-
-                ForEach(keys) { key in
-                    if key.isCalculated {
-                        if let string = sheet.string(forKey: key) {
-                            Text(string)
-                        } else if let integer = sheet.integer(forKey: key) {
-                            Text("\(integer)")
-                        }
-                    } else {
-                        if let _ = sheet.string(forKey: key) {
-                            EditableStringView(value: sheet.editableString(forKey: key))
-                        } else {
-                            EditableIntegerView(value: sheet.editableInteger(forKey: key))
-                        }
-                    }
-                }
-                .font(.body.weight(.bold))
-            }
+            SheetHeaderView(sheet: sheet)
+                .padding()
             
             HStack(alignment: .top) {
                 AbilitiesView(sheet: sheet)
@@ -53,6 +32,9 @@ struct SheetView: View {
                 Spacer()
                     .frame(maxWidth: .infinity)
             }
+            .padding()
+
+            InventoryView(sheet: sheet)
             
             Spacer()
         }

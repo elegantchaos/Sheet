@@ -220,7 +220,7 @@ extension CharacterSheet {
             case 6...8: return -1
             case 13...15: return 1
             case 16...17: return 2
-            case 18: return 3
+            case 18...Int.max: return 3
             default: return 0
         }
     }

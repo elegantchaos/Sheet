@@ -7,22 +7,10 @@ import Foundation
 import SwiftUI
 import CoreData
 
-extension Set where Element == CharacterStat {
-    mutating func stat(forKey key: String, context: NSManagedObjectContext) -> CharacterStat {
-        if let stat = first(where: { $0.key == key }) {
-            return stat
-        } else {
-            let stat = CharacterStat(context: context)
-            stat.key = key
-            insert(stat)
-            return stat
-        }
-    }
-}
-    
 extension CharacterSheet {
     public override func awakeFromInsert() {
         uuid = UUID()
+        set("Untitled", forKey: "name")
     }
     
     func has(key: String) -> Bool {
@@ -43,30 +31,32 @@ extension CharacterSheet {
         return stat(forKey: key) as? Int
     }
 
+    func guaranteedStat(forKey key: String, sheet: CharacterSheet) -> CharacterStat {
+        if let stats = stats as? Set<CharacterStat>, let stat = stats.first(where: { $0.key == key }) {
+            return stat
+        } else {
+            let stat = CharacterStat(context: managedObjectContext!)
+            stat.key = key
+            stat.sheet = self
+            return stat
+        }
+    }
+    
     func set(_ string: String, forKey key: String) {
-        if var stats = stats as? Set<CharacterStat> {
-            let stat = stats.stat(forKey: key, context: managedObjectContext!)
-            if stat.string != string {
-                objectWillChange.send()
-                stat.string = string
-            }
+        let stat = guaranteedStat(forKey: key, sheet: self)
+        if stat.string != string {
+            objectWillChange.send()
+            stat.string = string
         }
     }
 
     func set(_ integer: Int, forKey key: String) {
-        if var stats = stats as? Set<CharacterStat> {
-            let stat = stats.stat(forKey: key, context: managedObjectContext!)
-            let newValue = Int64(integer)
-            if stat.integer != newValue {
-                objectWillChange.send()
-                stat.integer = newValue
-            }
+        let stat = guaranteedStat(forKey: key, sheet: self)
+        let newValue = Int64(integer)
+        if stat.integer != newValue {
+            objectWillChange.send()
+            stat.integer = newValue
         }
-    }
-    
-    var editableName: String {
-        get { name ?? "" }
-        set { name = newValue }
     }
     
     func editableString(forKey key: String) -> Binding<String> {

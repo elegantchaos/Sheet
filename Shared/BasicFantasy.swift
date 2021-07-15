@@ -41,6 +41,9 @@ class BasicFantasy: ObservableObject, GameRules {
 
         // calculated
         case hitsAndDamage
+        case carryingLight
+        case carryingHeavy
+        case carryingBoth
         
         var id: String {
             rawValue
@@ -61,7 +64,7 @@ class BasicFantasy: ObservableObject, GameRules {
         
         var isCalculated: Bool {
             switch self {
-                case .hitsAndDamage:
+                case .hitsAndDamage, .carryingLight, .carryingHeavy, .carryingBoth:
                     return true
                     
                 default:
@@ -70,7 +73,7 @@ class BasicFantasy: ObservableObject, GameRules {
         }
     }
     
-    let topStats: [Stat] = [.race, .gender, .class, .level, .age, .hitsAndDamage]
+    let topStats: [Stat] = [.race, .gender, .class, .level, .age, .carryingBoth, .hitsAndDamage]
     let abilityStats: [Stat] = [.strength, .intelligence, .wisdom, .dexterity, .constitution, .charisma]
     
     enum CharacterClass: String, CaseIterable, RawIdentifiable, Codable {
@@ -170,6 +173,16 @@ extension CharacterSheet {
         editableInteger(forKey: key.rawValue)
     }
 
+    func modifiedCarryingCapacity(base: Int) -> Int {
+        let modifier = Double(modifierOffset(for: .strength))
+        let multiplier = 1.0 + ((modifier > 0) ? (0.1 * modifier) : (-0.2 * modifier))
+        let modified = Double(base) * multiplier
+        let rounded = Int(modified / 5.0) * 5
+        return rounded
+    }
+    
+    var isHalfling: Bool { string(forKey: .race)?.lowercased() == "halfling" }
+
     func stat(forKey key: BasicFantasy.Stat) -> Any? {
         switch key {
             case .hitsAndDamage:
@@ -177,6 +190,18 @@ extension CharacterSheet {
                 guard let damage = integer(forKey: .damage) else { return nil }
                 return "\(hits - damage) / \(hits)"
                 
+            case .carryingLight:
+                return modifiedCarryingCapacity(base: isHalfling ? 50 : 60)
+
+            case .carryingHeavy:
+                return modifiedCarryingCapacity(base: isHalfling ? 100 : 150)
+
+            case .carryingBoth:
+                let isHalfling = self.isHalfling
+                let light = modifiedCarryingCapacity(base: isHalfling ? 50 : 60)
+                let heavy = modifiedCarryingCapacity(base: isHalfling ? 100 : 150)
+                return "\(light) / \(heavy)"
+
             default:
                 return stat(forKey: key.rawValue)
         }

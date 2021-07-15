@@ -9,7 +9,7 @@ import CoreData
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \CharacterSheet.name, ascending: true)],
+        sortDescriptors: [],
         animation: .default)
     private var items: FetchedResults<CharacterSheet>
     

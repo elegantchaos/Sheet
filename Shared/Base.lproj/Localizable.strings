@@ -1,9 +1,10 @@
 /* 
-  Localizable.strings
-  Sheet
 
-  Created by Sam Deane on 13/07/2021.
-  
+ // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+ //  Created by Sam Deane on 15/07/21.
+ //  All code (c) 2021 - present day, Elegant Chaos Limited.
+ // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 */
 
 Stat0 = "Strength";
@@ -16,3 +17,5 @@ magicWands = "Magic Wands";
 paralysisOrPetrify = "Paralysis or Petrify";
 dragonBreath = "Dragon Breath";
 spells = "Spells";
+
+carryingBoth = "carrying";

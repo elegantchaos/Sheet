@@ -9,7 +9,7 @@ struct IndexView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @AppStorage("selection") var selection: String?
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \CharacterSheet.name, ascending: true)],
+        sortDescriptors: [],
         animation: .default)
     
     private var items: FetchedResults<CharacterSheet>
@@ -20,7 +20,7 @@ struct IndexView: View {
                 List(selection: $selection) {
                     ForEach(items) { sheet in
                         NavigationLink(destination: SheetView(sheet: sheet), tag: sheet.id, selection: $selection) {
-                            Text("\(sheet.name!)")
+                            Text(sheet.string(forKey: .name)!)
                         }
                     }
                     .onDelete(perform: deleteItems)
@@ -44,8 +44,6 @@ struct IndexView: View {
     private func addItem() {
         withAnimation {
             let newItem = CharacterSheet(context: viewContext)
-            newItem.name = "Untitled"
-
             do {
                 try viewContext.save()
             } catch {

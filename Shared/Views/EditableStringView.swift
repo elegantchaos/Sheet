@@ -14,6 +14,8 @@ struct EditableStringView: View {
             TextField("Name", text: $value)
                 .multilineTextAlignment(.center)
                 .background(Color.gray.opacity(0.1))
+                .autocapitalization(.none)
+                .disableAutocorrection(true)
         } else {
             Text(value)
         }

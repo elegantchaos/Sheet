@@ -14,6 +14,8 @@ struct EditableIntegerView: View {
             TextField("Name", text: stringValue)
                 .multilineTextAlignment(.center)
                 .background(Color.gray.opacity(0.1))
+                .keyboardType(.numberPad)
+                
         } else {
             Text(value, format: .number)
         }

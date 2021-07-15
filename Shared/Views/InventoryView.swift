@@ -7,12 +7,12 @@ import Foundation
 import SwiftUI
 
 struct InventoryItemView: View {
-    @ObservedObject var item: CharacterItem
+    @ObservedObject var item: CharacterSheet
     
     var body: some View {
         HStack {
-            Text(item.name ?? "<unknown item>")
-            Text(Int(item.count), format: .number)
+            EditableStringView(value: item.editableString(forKey: .name))
+            EditableIntegerView(value: item.editableInteger(forKey: "count"))
         }
     }
 }
@@ -22,7 +22,7 @@ struct InventoryView: View {
     
     var body: some View {
         return List {
-            if let coerced = sheet.items as? Set<CharacterItem>, let items = Array(coerced) {
+            if let coerced = sheet.items as? Set<CharacterSheet>, let items = Array(coerced) {
                 ForEach(items) { item in
                     InventoryItemView(item: item)
                 }
@@ -41,10 +41,10 @@ struct InventoryView: View {
     }
 
     func handleAddItem() {
-        let item = CharacterItem(context: sheet.managedObjectContext!)
-        item.sheet = sheet
-        item.name = "Untitled"
-        item.count = 1
+        let item = CharacterSheet(context: sheet.managedObjectContext!)
+        item.parent = sheet
+        item.set("Untitled Item", forKey: .name)
+        item.set(1, forKey: "count")
         try? sheet.save()
     }
     

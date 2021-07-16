@@ -22,8 +22,8 @@ struct InventoryView: View {
     
     var body: some View {
         return List {
-            if let coerced = sheet.children as? Set<Record>, let items = Array(coerced) {
-                ForEach(items) { item in
+            if let items = sheet.stat(forKey: .items) as? Set<Record>, let sorted = Array(items) {
+                ForEach(sorted) { item in
                     InventoryItemView(item: item)
                 }
                 .onDelete(perform: handleDelete)
@@ -41,8 +41,10 @@ struct InventoryView: View {
     }
 
     func handleAddItem() {
+        let itemsRecord = sheet.guaranteedEntry(forKey: .items)
+        itemsRecord.type = Int16(Record.EntryType.array.rawValue)
         let item = Record(context: sheet.managedObjectContext!)
-        item.parent = sheet
+        item.parent = itemsRecord
         item.set("Untitled Item", forKey: .name)
         item.set(1, forKey: .itemCount)
         try? sheet.save()

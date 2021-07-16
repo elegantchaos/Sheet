@@ -48,6 +48,7 @@ class BasicFantasy: ObservableObject, GameRules {
         case capacityBoth
         
         // items
+        case items
         case itemCount
         
         var id: String {

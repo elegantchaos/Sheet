@@ -7,7 +7,14 @@ import Foundation
 import SwiftUI
 import CoreData
 
+
 extension Record {
+    enum EntryType: Int {
+        case array
+        case string
+        case integer
+    }
+    
     public override func awakeFromInsert() {
         uuid = UUID()
         set("Untitled", forKey: "name")
@@ -20,7 +27,12 @@ extension Record {
     
     func stat(forKey key: String) -> Any? {
         guard let stats = entries as? Set<RecordEntry>, let stat = stats.first(where: { $0.key == key }) else { return nil }
-        return stat.string ?? Int(stat.integer)
+        guard let type = EntryType(rawValue: Int(stat.type)) else { return nil }
+        switch type {
+            case .integer: return Int(stat.integer)
+            case .string: return stat.string
+            case .array: return stat.children as? Set<Record>
+        }
     }
     
     func string(forKey key: String) -> String? {
@@ -31,7 +43,7 @@ extension Record {
         return stat(forKey: key) as? Int
     }
 
-    func guaranteedEntry(forKey key: String, sheet: Record) -> RecordEntry {
+    func guaranteedEntry(forKey key: String) -> RecordEntry {
         if let stats = entries as? Set<RecordEntry>, let stat = stats.first(where: { $0.key == key }) {
             return stat
         } else {
@@ -43,19 +55,23 @@ extension Record {
     }
     
     func set(_ string: String, forKey key: String) {
-        let stat = guaranteedEntry(forKey: key, sheet: self)
-        if stat.string != string {
+        let stat = guaranteedEntry(forKey: key)
+        let type = Int16(EntryType.string.rawValue)
+        if (stat.type != type) || (stat.string != string) {
             objectWillChange.send()
             stat.string = string
+            stat.type = type
         }
     }
 
     func set(_ integer: Int, forKey key: String) {
-        let stat = guaranteedEntry(forKey: key, sheet: self)
+        let stat = guaranteedEntry(forKey: key)
+        let type = Int16(EntryType.integer.rawValue)
         let newValue = Int64(integer)
-        if stat.integer != newValue {
+        if (stat.type != type) || (stat.integer != newValue) {
             objectWillChange.send()
             stat.integer = newValue
+            stat.type = type
         }
     }
     

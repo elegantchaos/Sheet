@@ -60,6 +60,9 @@ extension Record {
     
     var isHalfling: Bool { string(forKey: .race)?.lowercased() == "halfling" }
 
+    func guaranteedEntry(forKey key: BasicFantasy.Stat) -> RecordEntry {
+        return guaranteedEntry(forKey: key.rawValue)
+    }
     
     func stat(forKey key: BasicFantasy.Stat) -> Any? {
         switch key {

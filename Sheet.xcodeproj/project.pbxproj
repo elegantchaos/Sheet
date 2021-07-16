@@ -61,6 +61,7 @@
 		8B184EED26A1AC1B00D4687E /* WeightCarriedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightCarriedView.swift; sourceTree = "<group>"; };
 		8B184EEF26A1B6B900D4687E /* WeightCarried.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightCarried.swift; sourceTree = "<group>"; };
 		8B184EF126A1B7F400D4687E /* CharacterSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSheet.swift; sourceTree = "<group>"; };
+		8B184EF426A1C23400D4687E /* RecordEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordEntry.swift; sourceTree = "<group>"; };
 		8BFAF4DC26A095000096893C /* SheetHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetHeaderView.swift; sourceTree = "<group>"; };
 		8BFAF4DE26A097D50096893C /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
 		8BFDFDC2269DA25B0091F150 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
@@ -128,6 +129,7 @@
 			children = (
 				8BFDFDC5269DA25B0091F150 /* Persistence.swift */,
 				8BFDFE0C269DA9C60091F150 /* Record.swift */,
+				8B184EF426A1C23400D4687E /* RecordEntry.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";

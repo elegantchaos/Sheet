@@ -6,28 +6,6 @@
 import Foundation
 import SwiftUI
 
-struct StatView: View {
-    let value: Any?
-    
-    var body: some View {
-        switch value {
-            case is String:
-                Text(value as! String)
-                
-            case is Int:
-                Text(value as! Int, format: .number)
-
-            case is Binding<String>:
-                EditableStringView(value: value as! Binding<String>)
-
-            case is Binding<Int>:
-                EditableIntegerView(value: value as! Binding<Int>)
-                
-            default:
-                EmptyView()
-        }
-    }
-}
 
 struct EditableStatView: View {
     @EnvironmentObject var context: Context
@@ -40,6 +18,8 @@ struct EditableStatView: View {
             StatView(value: binding)
         } else if let stat = sheet.stat(forKey: key) {
             StatView(value: stat)
+        } else {
+            Text("no value for \(key.rawValue)")
         }
     }
 }

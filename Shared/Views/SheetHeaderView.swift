@@ -22,15 +22,7 @@ struct SheetHeaderView: View {
             }
 
             ForEach(keys) { key in
-                if key.isCalculated {
-                    if let string = sheet.string(forKey: key) {
-                        Text(string)
-                    } else if let integer = sheet.integer(forKey: key) {
-                        Text("\(integer)")
-                    }
-                } else {
-                    EditableStatView(sheet: sheet, key: key)
-                }
+                EditableStatView(sheet: sheet, key: key)
             }
             .font(.body.weight(.bold))
         }

@@ -201,6 +201,26 @@ extension CharacterSheet {
     
     var isHalfling: Bool { string(forKey: .race)?.lowercased() == "halfling" }
 
+    enum CapacityStatus {
+        case normal
+        case encumbered
+        case overloaded
+        
+        var color: Color {
+            switch self {
+                case .normal: return .green
+                case .encumbered: return .orange
+                case .overloaded: return .red
+            }
+
+        }
+    }
+    
+    struct Capacity {
+        let value: Int
+        let status: CapacityStatus
+    }
+    
     func stat(forKey key: BasicFantasy.Stat) -> Any? {
         switch key {
             case .hitsAndDamage:
@@ -218,7 +238,14 @@ extension CharacterSheet {
                 let isHalfling = self.isHalfling
                 let light = modifiedCarryingCapacity(base: isHalfling ? 50 : 60)
                 let heavy = modifiedCarryingCapacity(base: isHalfling ? 100 : 150)
-                return "\(light) / \(heavy)"
+                let carrying = integer(forKey: .carrying) ?? 0
+                if carrying < light {
+                    return Capacity(value: carrying, status: .normal)
+                } else if carrying < heavy {
+                    return Capacity(value: carrying, status: .encumbered)
+                } else {
+                    return Capacity(value: carrying, status: .overloaded)
+                }
 
             default:
                 return stat(forKey: key.rawValue)

@@ -9,7 +9,7 @@ struct SheetView: View {
     @EnvironmentObject var context: Context
     @EnvironmentObject var system: GameSystem
 
-    @ObservedObject var sheet: CharacterSheet
+    @ObservedObject var sheet: Record
     @FocusState var nameFocussed: Bool
 
     var body: some View {
@@ -63,7 +63,7 @@ struct SheetView: View {
 struct SheetView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
-        let sheet = CharacterSheet(context: context)
+        let sheet = Record(context: context)
         let system = BasicFantasy(savingThrows: SavingThrowTable())
         system.randomize(sheet: sheet)
         

@@ -12,7 +12,7 @@ struct PersistenceController {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
         for _ in 0..<10 {
-            let newItem = CharacterSheet(context: viewContext)
+            let newItem = Record(context: viewContext)
         }
         
         do {

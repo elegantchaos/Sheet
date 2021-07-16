@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EditableStatView: View {
     @EnvironmentObject var context: Context
-    @ObservedObject var sheet: CharacterSheet
+    @ObservedObject var sheet: Record
     let key: GameSystem.Stat
     
     var body: some View {

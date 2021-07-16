@@ -12,7 +12,7 @@ struct IndexView: View {
         sortDescriptors: [],
         animation: .default)
     
-    private var items: FetchedResults<CharacterSheet>
+    private var items: FetchedResults<Record>
     
     var body: some View {
         NavigationView {
@@ -43,7 +43,7 @@ struct IndexView: View {
     
     private func addItem() {
         withAnimation {
-            let newItem = CharacterSheet(context: viewContext)
+            let newItem = Record(context: viewContext)
             do {
                 try viewContext.save()
             } catch {

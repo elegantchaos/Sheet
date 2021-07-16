@@ -12,7 +12,7 @@ import SwiftUI
 struct SheetHeaderView: View {
     @EnvironmentObject var context: Context
     @EnvironmentObject var system: GameSystem
-    @ObservedObject var sheet: CharacterSheet
+    @ObservedObject var sheet: Record
     
     var body: some View {
         let keys =  context.editing ? system.topStatsEditing : system.topStats

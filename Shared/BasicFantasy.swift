@@ -123,7 +123,7 @@ class BasicFantasy: ObservableObject, GameRules {
         return savingThrows.value(for: throwIndex, class: characterClass.rawValue, race: race, level: level)
     }
     
-    func randomize(sheet: CharacterSheet) {
+    func randomize(sheet: Record) {
         sheet.objectWillChange.send()
 
         for ability in abilityStats {

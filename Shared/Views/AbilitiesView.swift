@@ -6,7 +6,7 @@
 import SwiftUI
 
 struct AbilitiesView: View {
-    @ObservedObject var sheet: CharacterSheet
+    @ObservedObject var sheet: Record
     @EnvironmentObject var system: GameSystem
     
     static let statFormatter =

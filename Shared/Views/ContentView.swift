@@ -7,22 +7,29 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    @EnvironmentObject var system: GameSystem
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
         sortDescriptors: [],
-        predicate: NSPredicate(format: "parent != nil"),
+        predicate: NSPredicate(format: "parent == nil"),
         animation: .default)
-    private var items: FetchedResults<CharacterSheet>
+    private var items: FetchedResults<Record>
     
     var body: some View {
         if items.count > 0 {
             SheetView(sheet: items.first!)
                 .padding()
         } else {
-            Button(action: { _ = CharacterSheet(context: viewContext) }) {
+            Button(action: handleNewSheet) {
                 Text("New Sheet")
             }
         }
+    }
+    
+    func handleNewSheet() {
+        let record = Record(context: viewContext)
+        system.randomize(sheet: record)
+        try? record.save()
     }
 }
 

@@ -7,7 +7,7 @@ import Foundation
 import SwiftUI
 
 struct InventoryItemView: View {
-    @ObservedObject var item: CharacterSheet
+    @ObservedObject var item: Record
     
     var body: some View {
         HStack {
@@ -18,11 +18,11 @@ struct InventoryItemView: View {
 }
 
 struct InventoryView: View {
-    @ObservedObject var sheet: CharacterSheet
+    @ObservedObject var sheet: Record
     
     var body: some View {
         return List {
-            if let coerced = sheet.items as? Set<CharacterSheet>, let items = Array(coerced) {
+            if let coerced = sheet.children as? Set<Record>, let items = Array(coerced) {
                 ForEach(items) { item in
                     InventoryItemView(item: item)
                 }
@@ -41,7 +41,7 @@ struct InventoryView: View {
     }
 
     func handleAddItem() {
-        let item = CharacterSheet(context: sheet.managedObjectContext!)
+        let item = Record(context: sheet.managedObjectContext!)
         item.parent = sheet
         item.set("Untitled Item", forKey: .name)
         item.set(1, forKey: .itemCount)

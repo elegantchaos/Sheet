@@ -64,7 +64,7 @@ struct SheetView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
         let sheet = Record(context: context)
-        let system = BasicFantasy(savingThrows: SavingThrowTable())
+        let system = BasicFantasy(savingThrows: try! SavingThrowTable(), itemIndex: try! ItemIndex())
         system.randomize(sheet: sheet)
         
         return SheetView(sheet: sheet)

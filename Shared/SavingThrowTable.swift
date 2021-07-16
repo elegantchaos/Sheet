@@ -19,6 +19,11 @@ struct SavingThrowTable {
         let races: [String: String]
     }
 
+    init(name: String = "SavingThrows", bundle: Bundle = .main) throws {
+        let url = Bundle.main.url(forResource: name, withExtension: "json")!
+        try self.init(url: url)
+    }
+    
     init(url: URL) throws {
         let decoder = JSONDecoder()
         let decoded = try decoder.decode(CodedTable.self, from: try Data(contentsOf: url))
@@ -28,11 +33,6 @@ struct SavingThrowTable {
         }
         self.classValues = classes
         self.raceModifiers = decoded.races.mapValues({ $0.asIntegers })
-    }
-    
-    init() {
-        classValues = [:]
-        raceModifiers = [:]
     }
     
     func value(for throwIndex: Int, `class` cclass: String, race: String, level: Int) -> Int? {

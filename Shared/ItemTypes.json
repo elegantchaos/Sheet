@@ -1,0 +1,12 @@
+
+{
+    "backpack": {
+        "name": "Backpack",
+        "price": "5gp",
+    },
+    "hempRope": {
+        "name": "Rope (Hemp)",
+        "price": "1gp",
+        "weight": 5
+    }
+}

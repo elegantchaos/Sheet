@@ -15,6 +15,7 @@ struct InventoryItemView: View {
             EditableStatView(sheet: item, key: .itemCount)
             EditableStatView(sheet: item, key: .itemWeight)
             EditableStatView(sheet: item, key: .itemEquipped)
+            EditableStatView(sheet: item, key: .itemType)
         }
     }
 }

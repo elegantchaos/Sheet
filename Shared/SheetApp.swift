@@ -14,9 +14,9 @@ struct SheetApp: App {
     let system: GameSystem
     
     init() {
-        let url = Bundle.main.url(forResource: "SavingThrows", withExtension: "json")
-        let savingThrows = try! SavingThrowTable(url: url!)
-        let system = BasicFantasy(savingThrows: savingThrows)
+        let savingThrows = try! SavingThrowTable()
+        let items = try! ItemIndex()
+        let system = BasicFantasy(savingThrows: savingThrows, itemIndex: items)
 
         self.system = system
     }

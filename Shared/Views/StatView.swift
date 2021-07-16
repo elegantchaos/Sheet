@@ -26,6 +26,9 @@ struct StatView: View {
             case let carried as WeightCarried:
                 WeightCarriedView(carried: carried)
                 
+            case let spec as ItemIndex.ItemSpec:
+                ItemTypeView(spec: spec)
+                
             default:
                 Text("<unknown type>")
         }

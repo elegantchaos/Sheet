@@ -10,8 +10,10 @@ protocol GameRules {
     associatedtype CharacterClass
     associatedtype SavingThrow
     
-    init(savingThrows: SavingThrowTable)
+    init(savingThrows: SavingThrowTable, itemIndex: ItemIndex)
     
     var topStatsViewing: [Stat] { get }
     var abilityStats: [Stat] { get }
+    
+    var itemIndex: ItemIndex { get }
 }

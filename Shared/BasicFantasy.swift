@@ -15,9 +15,11 @@ extension RawIdentifiable where RawValue == ID {
 
 class BasicFantasy: ObservableObject, GameRules {
     let savingThrows: SavingThrowTable
-    
-    required init(savingThrows: SavingThrowTable) {
+    let itemIndex: ItemIndex
+
+    required init(savingThrows: SavingThrowTable, itemIndex: ItemIndex) {
         self.savingThrows = savingThrows
+        self.itemIndex = itemIndex
     }
     
     enum Stat: String, CaseIterable, Identifiable {
@@ -53,6 +55,7 @@ class BasicFantasy: ObservableObject, GameRules {
         case itemType
         case itemWeight
         case itemEquipped
+        case itemGuidePrice
         case itemCount
 
         // armour
@@ -173,6 +176,7 @@ class BasicFantasy: ObservableObject, GameRules {
         item.set(Int.random(in: 0...1), forKey: .meleeAdjustment)
         item.set(Int.random(in: 0...1), forKey: .rangedAdjustment)
         item.set(Int.random(in: 0...1), forKey: .damageAdjustment)
+        item.set(itemIndex.items.keys.randomElement()!, forKey: .itemType)
     }
 }
 

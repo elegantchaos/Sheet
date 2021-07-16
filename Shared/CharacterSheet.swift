@@ -75,10 +75,16 @@ extension Record {
             case .capacityHeavy:    return capacityHeavy
             case .weightCarried:    return weightCarried
             case .movement:         return movement
+            case .itemType:         return itemType
 
             default:
                 return stat(forKey: key.rawValue)
         }
+    }
+
+    var itemType: ItemIndex.ItemSpec {
+        let id = string(forKey: GameSystem.Stat.itemType.rawValue)
+        return ItemIndex.ItemSpec(id: id, item: self)
     }
 
     var movement: String {

@@ -24,6 +24,10 @@ extension Record {
         set(integer, forKey: key.rawValue)
     }
     
+    func append(_ record: Record, forKey key: BasicFantasy.Stat) {
+        append(record, forKey: key.rawValue)
+    }
+        
     func has(key: BasicFantasy.Stat) -> Bool {
         if !has(key: key.rawValue) {
             for dependency in key.dependencies {

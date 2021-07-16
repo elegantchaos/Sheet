@@ -55,24 +55,31 @@ extension Record {
     }
     
     func set(_ string: String, forKey key: String) {
-        let stat = guaranteedEntry(forKey: key)
+        let entry = guaranteedEntry(forKey: key)
         let type = Int16(EntryType.string.rawValue)
-        if (stat.type != type) || (stat.string != string) {
+        if (entry.type != type) || (entry.string != string) {
             objectWillChange.send()
-            stat.string = string
-            stat.type = type
+            entry.string = string
+            entry.type = type
         }
     }
 
     func set(_ integer: Int, forKey key: String) {
-        let stat = guaranteedEntry(forKey: key)
+        let entry = guaranteedEntry(forKey: key)
         let type = Int16(EntryType.integer.rawValue)
         let newValue = Int64(integer)
-        if (stat.type != type) || (stat.integer != newValue) {
+        if (entry.type != type) || (entry.integer != newValue) {
             objectWillChange.send()
-            stat.integer = newValue
-            stat.type = type
+            entry.integer = newValue
+            entry.type = type
         }
+    }
+    
+    func append(_ record: Record, forKey key: String) {
+        let entry = guaranteedEntry(forKey: key)
+        objectWillChange.send()
+        record.parent = entry
+        entry.type = Int16(EntryType.array.rawValue)
     }
     
     func stringBinding(forKey key: String) -> Binding<String> {

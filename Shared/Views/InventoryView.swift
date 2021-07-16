@@ -41,12 +41,10 @@ struct InventoryView: View {
     }
 
     func handleAddItem() {
-        let itemsRecord = sheet.guaranteedEntry(forKey: .items)
-        itemsRecord.type = Int16(Record.EntryType.array.rawValue)
         let item = Record(context: sheet.managedObjectContext!)
-        item.parent = itemsRecord
         item.set("Untitled Item", forKey: .name)
         item.set(1, forKey: .itemCount)
+        sheet.append(item, forKey: .items)
         try? sheet.save()
     }
     

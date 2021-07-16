@@ -23,8 +23,8 @@ struct StatView: View {
             case is Binding<Int>:
                 EditableIntegerView(value: value as! Binding<Int>)
                 
-            case let capacity as CharacterSheet.Capacity:
-                CapacityView(capacity: capacity)
+            case let carried as WeightCarried:
+                WeightCarriedView(carried: carried)
                 
             default:
                 Text("<unknown type>")

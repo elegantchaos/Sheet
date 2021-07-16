@@ -19,7 +19,9 @@
 		8B1578E9269F2A1E00073D0F /* GameRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1578E8269F2A1E00073D0F /* GameRules.swift */; };
 		8B184EEA26A1A0C500D4687E /* EditableStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B184EE926A1A0C500D4687E /* EditableStatView.swift */; };
 		8B184EEC26A1AC1600D4687E /* StatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B184EEB26A1AC1600D4687E /* StatView.swift */; };
-		8B184EEE26A1AC1B00D4687E /* CapacityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B184EED26A1AC1B00D4687E /* CapacityView.swift */; };
+		8B184EEE26A1AC1B00D4687E /* WeightCarriedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B184EED26A1AC1B00D4687E /* WeightCarriedView.swift */; };
+		8B184EF026A1B6B900D4687E /* WeightCarried.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B184EEF26A1B6B900D4687E /* WeightCarried.swift */; };
+		8B184EF226A1B7F400D4687E /* BasicFantasy+Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B184EF126A1B7F400D4687E /* BasicFantasy+Stats.swift */; };
 		8BFAF4DD26A095000096893C /* SheetHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFAF4DC26A095000096893C /* SheetHeaderView.swift */; };
 		8BFAF4DF26A097D50096893C /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFAF4DE26A097D50096893C /* InventoryView.swift */; };
 		8BFDFDDB269DA25D0091F150 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFDFDDA269DA25D0091F150 /* Tests_iOS.swift */; };
@@ -56,7 +58,9 @@
 		8B1578E8269F2A1E00073D0F /* GameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRules.swift; sourceTree = "<group>"; };
 		8B184EE926A1A0C500D4687E /* EditableStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableStatView.swift; sourceTree = "<group>"; };
 		8B184EEB26A1AC1600D4687E /* StatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatView.swift; sourceTree = "<group>"; };
-		8B184EED26A1AC1B00D4687E /* CapacityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapacityView.swift; sourceTree = "<group>"; };
+		8B184EED26A1AC1B00D4687E /* WeightCarriedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightCarriedView.swift; sourceTree = "<group>"; };
+		8B184EEF26A1B6B900D4687E /* WeightCarried.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightCarried.swift; sourceTree = "<group>"; };
+		8B184EF126A1B7F400D4687E /* BasicFantasy+Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BasicFantasy+Stats.swift"; sourceTree = "<group>"; };
 		8BFAF4DC26A095000096893C /* SheetHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetHeaderView.swift; sourceTree = "<group>"; };
 		8BFAF4DE26A097D50096893C /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
 		8BFDFDC2269DA25B0091F150 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
@@ -112,7 +116,7 @@
 				8BFDFE0F269DB3160091F150 /* IndexView.swift */,
 				8B1578E4269EFDB100073D0F /* EditableStringView.swift */,
 				8B184EEB26A1AC1600D4687E /* StatView.swift */,
-				8B184EED26A1AC1B00D4687E /* CapacityView.swift */,
+				8B184EED26A1AC1B00D4687E /* WeightCarriedView.swift */,
 				8B184EE926A1A0C500D4687E /* EditableStatView.swift */,
 				8B1578E6269F06DD00073D0F /* EditableIntegerView.swift */,
 			);
@@ -138,7 +142,9 @@
 				8B1577C5269DFC0100073D0F /* SavingThrowTable.swift */,
 				8BFDFDC5269DA25B0091F150 /* Persistence.swift */,
 				8BFDFE0C269DA9C60091F150 /* CharacterSheet.swift */,
+				8B184EEF26A1B6B900D4687E /* WeightCarried.swift */,
 				8B1577C1269DE65300073D0F /* BasicFantasy.swift */,
+				8B184EF126A1B7F400D4687E /* BasicFantasy+Stats.swift */,
 				8B1578E8269F2A1E00073D0F /* GameRules.swift */,
 				8BFDFE20269DD01F0091F150 /* Localizable.strings */,
 				8B1577C3269DFB5300073D0F /* SavingThrows.json */,
@@ -304,7 +310,7 @@
 				8BFDFDEC269DA25D0091F150 /* Persistence.swift in Sources */,
 				8B1578E3269EFBEA00073D0F /* Context.swift in Sources */,
 				8BFDFDE8269DA25D0091F150 /* SheetApp.swift in Sources */,
-				8B184EEE26A1AC1B00D4687E /* CapacityView.swift in Sources */,
+				8B184EEE26A1AC1B00D4687E /* WeightCarriedView.swift in Sources */,
 				8BFDFE02269DA6BA0091F150 /* SheetView.swift in Sources */,
 				8B1578E7269F06DD00073D0F /* EditableIntegerView.swift in Sources */,
 				8BFDFE10269DB3160091F150 /* IndexView.swift in Sources */,
@@ -314,10 +320,12 @@
 				8B1577C6269DFC0100073D0F /* SavingThrowTable.swift in Sources */,
 				8BFDFDEA269DA25D0091F150 /* ContentView.swift in Sources */,
 				8B184EEA26A1A0C500D4687E /* EditableStatView.swift in Sources */,
+				8B184EF226A1B7F400D4687E /* BasicFantasy+Stats.swift in Sources */,
 				8B1577C4269DFB5300073D0F /* SavingThrows.json in Sources */,
 				8B1577BE269DD5CE00073D0F /* AbilitiesView.swift in Sources */,
 				8B1578E1269EF47D00073D0F /* SavingThrowsView.swift in Sources */,
 				8B1578E9269F2A1E00073D0F /* GameRules.swift in Sources */,
+				8B184EF026A1B6B900D4687E /* WeightCarried.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

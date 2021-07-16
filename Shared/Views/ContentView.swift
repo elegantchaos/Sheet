@@ -10,6 +10,7 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
         sortDescriptors: [],
+        predicate: NSPredicate(format: "parent != nil"),
         animation: .default)
     private var items: FetchedResults<CharacterSheet>
     

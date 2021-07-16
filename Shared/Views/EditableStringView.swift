@@ -6,18 +6,13 @@
 import SwiftUI
 
 struct EditableStringView: View {
-    @EnvironmentObject var context: Context
     @Binding var value: String
 
     var body: some View {
-        if context.editing {
-            TextField("Name", text: $value)
-                .multilineTextAlignment(.center)
-                .background(Color.gray.opacity(0.1))
-                .autocapitalization(.none)
-                .disableAutocorrection(true)
-        } else {
-            Text(value)
-        }
+        TextField("Name", text: $value)
+            .multilineTextAlignment(.center)
+            .background(Color.gray.opacity(0.1))
+            .autocapitalization(.none)
+            .disableAutocorrection(true)
     }
 }

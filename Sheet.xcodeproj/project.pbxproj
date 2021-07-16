@@ -17,6 +17,7 @@
 		8B1578E5269EFDB100073D0F /* EditableStringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1578E4269EFDB100073D0F /* EditableStringView.swift */; };
 		8B1578E7269F06DD00073D0F /* EditableIntegerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1578E6269F06DD00073D0F /* EditableIntegerView.swift */; };
 		8B1578E9269F2A1E00073D0F /* GameRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1578E8269F2A1E00073D0F /* GameRules.swift */; };
+		8B184EEA26A1A0C500D4687E /* EditableStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B184EE926A1A0C500D4687E /* EditableStatView.swift */; };
 		8BFAF4DD26A095000096893C /* SheetHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFAF4DC26A095000096893C /* SheetHeaderView.swift */; };
 		8BFAF4DF26A097D50096893C /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFAF4DE26A097D50096893C /* InventoryView.swift */; };
 		8BFDFDDB269DA25D0091F150 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFDFDDA269DA25D0091F150 /* Tests_iOS.swift */; };
@@ -51,6 +52,7 @@
 		8B1578E4269EFDB100073D0F /* EditableStringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableStringView.swift; sourceTree = "<group>"; };
 		8B1578E6269F06DD00073D0F /* EditableIntegerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableIntegerView.swift; sourceTree = "<group>"; };
 		8B1578E8269F2A1E00073D0F /* GameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRules.swift; sourceTree = "<group>"; };
+		8B184EE926A1A0C500D4687E /* EditableStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableStatView.swift; sourceTree = "<group>"; };
 		8BFAF4DC26A095000096893C /* SheetHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetHeaderView.swift; sourceTree = "<group>"; };
 		8BFAF4DE26A097D50096893C /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
 		8BFDFDC2269DA25B0091F150 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				8B1578E0269EF47D00073D0F /* SavingThrowsView.swift */,
 				8BFDFE0F269DB3160091F150 /* IndexView.swift */,
 				8B1578E4269EFDB100073D0F /* EditableStringView.swift */,
+				8B184EE926A1A0C500D4687E /* EditableStatView.swift */,
 				8B1578E6269F06DD00073D0F /* EditableIntegerView.swift */,
 			);
 			path = Views;
@@ -302,6 +305,7 @@
 				8BFDFE0D269DA9C60091F150 /* CharacterSheet.swift in Sources */,
 				8B1577C6269DFC0100073D0F /* SavingThrowTable.swift in Sources */,
 				8BFDFDEA269DA25D0091F150 /* ContentView.swift in Sources */,
+				8B184EEA26A1A0C500D4687E /* EditableStatView.swift in Sources */,
 				8B1577C4269DFB5300073D0F /* SavingThrows.json in Sources */,
 				8B1577BE269DD5CE00073D0F /* AbilitiesView.swift in Sources */,
 				8B1578E1269EF47D00073D0F /* SavingThrowsView.swift in Sources */,

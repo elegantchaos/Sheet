@@ -30,6 +30,7 @@ class BasicFantasy: ObservableObject, GameRules {
         case age
         case hits
         case damage
+        case carrying
 
         // abilities
         case strength
@@ -41,9 +42,9 @@ class BasicFantasy: ObservableObject, GameRules {
 
         // calculated
         case hitsAndDamage
-        case carryingLight
-        case carryingHeavy
-        case carryingBoth
+        case capacityLight
+        case capacityHeavy
+        case capacityBoth
         
         var id: String {
             rawValue
@@ -64,7 +65,7 @@ class BasicFantasy: ObservableObject, GameRules {
         
         var isCalculated: Bool {
             switch self {
-                case .hitsAndDamage, .carryingLight, .carryingHeavy, .carryingBoth:
+                case .hitsAndDamage, .capacityLight, .capacityHeavy, .capacityBoth:
                     return true
                     
                 default:
@@ -73,7 +74,8 @@ class BasicFantasy: ObservableObject, GameRules {
         }
     }
     
-    let topStats: [Stat] = [.race, .gender, .class, .level, .age, .carryingBoth, .hitsAndDamage]
+    let topStats: [Stat] = [.race, .gender, .class, .level, .age, .capacityBoth, .hitsAndDamage]
+    let topStatsEditing: [Stat] = [.race, .gender, .class, .level, .age, .carrying, .damage]
     let abilityStats: [Stat] = [.strength, .intelligence, .wisdom, .dexterity, .constitution, .charisma]
     
     enum CharacterClass: String, CaseIterable, RawIdentifiable, Codable {
@@ -165,6 +167,22 @@ extension CharacterSheet {
         return true
     }
     
+    func binding(forKey key: BasicFantasy.Stat) -> Any? {
+        guard let stat = stat(forKey: key) else { return nil }
+        guard !key.isCalculated else { return stat }
+        
+        switch stat {
+            case is String:
+                return editableString(forKey:key)
+                
+            case is Int:
+                return editableInteger(forKey:key)
+                
+            default:
+                return stat
+        }
+    }
+    
     func editableString(forKey key: BasicFantasy.Stat) -> Binding<String> {
         editableString(forKey: key.rawValue)
     }
@@ -190,13 +208,13 @@ extension CharacterSheet {
                 guard let damage = integer(forKey: .damage) else { return nil }
                 return "\(hits - damage) / \(hits)"
                 
-            case .carryingLight:
+            case .capacityLight:
                 return modifiedCarryingCapacity(base: isHalfling ? 50 : 60)
 
-            case .carryingHeavy:
+            case .capacityHeavy:
                 return modifiedCarryingCapacity(base: isHalfling ? 100 : 150)
 
-            case .carryingBoth:
+            case .capacityBoth:
                 let isHalfling = self.isHalfling
                 let light = modifiedCarryingCapacity(base: isHalfling ? 50 : 60)
                 let heavy = modifiedCarryingCapacity(base: isHalfling ? 100 : 150)

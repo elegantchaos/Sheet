@@ -10,11 +10,12 @@ import Foundation
 import SwiftUI
 
 struct SheetHeaderView: View {
+    @EnvironmentObject var context: Context
     @EnvironmentObject var system: GameSystem
     @ObservedObject var sheet: CharacterSheet
     
     var body: some View {
-        let keys = system.topStats
+        let keys =  context.editing ? system.topStatsEditing : system.topStats
         return LazyVGrid(columns: [GridItem](repeating: GridItem(.flexible()), count: keys.count)) {
             ForEach(keys) { key in
                 Text(LocalizedStringKey(key.rawValue))
@@ -28,11 +29,7 @@ struct SheetHeaderView: View {
                         Text("\(integer)")
                     }
                 } else {
-                    if let _ = sheet.string(forKey: key) {
-                        EditableStringView(value: sheet.editableString(forKey: key))
-                    } else {
-                        EditableIntegerView(value: sheet.editableInteger(forKey: key))
-                    }
+                    EditableStatView(sheet: sheet, key: key)
                 }
             }
             .font(.body.weight(.bold))

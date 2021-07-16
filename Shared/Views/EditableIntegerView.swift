@@ -6,19 +6,13 @@
 import SwiftUI
 
 struct EditableIntegerView: View {
-    @EnvironmentObject var context: Context
     @Binding var value: Int
 
     var body: some View {
-        if context.editing {
-            TextField("Name", text: stringValue)
-                .multilineTextAlignment(.center)
-                .background(Color.gray.opacity(0.1))
-                .keyboardType(.numberPad)
-                
-        } else {
-            Text(value, format: .number)
-        }
+        TextField("Name", text: stringValue)
+            .multilineTextAlignment(.center)
+            .background(Color.gray.opacity(0.1))
+            .keyboardType(.numberPad)
     }
     
     var stringValue: Binding<String> {

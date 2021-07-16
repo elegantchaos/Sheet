@@ -7,23 +7,48 @@ import Foundation
 import SwiftUI
 
 struct ItemTypeView: View {
+    @EnvironmentObject var context: Context
     @EnvironmentObject var system: GameSystem
     
     let spec: ItemIndex.ItemSpec
     
     var body: some View {
         let label: String
+        let isCustom: Bool
+
         if let id = spec.id, let item = system.itemIndex.items[id], let name = item.stats[.name] as? String {
             label = name
+            isCustom = false
+        } else if !context.editing, let item = spec.item, let name = item.string(forKey: .name) {
+            label = name
+            isCustom = true
         } else {
-            label = "<select>"
+            label = "Custom:"
+            isCustom = true
         }
         
-        return Menu(label) {
-            ForEach(system.itemIndex.itemIds, id: \.self) { item in
-                Button(action: { handleSetType(to: item) }) {
-                    Text(item)
+        return HStack {
+            if context.editing {
+                Menu(label) {
+                    Button(action: handleSetCustom ) {
+                        Text("Custom")
+                    }
+
+                    Divider()
+                    
+                    ForEach(system.itemIndex.itemIds, id: \.self) { item in
+                        Button(action: { handleSetType(to: item) }) {
+                            Text(item)
+                        }
+                    }
                 }
+                
+                if isCustom, let item = spec.item {
+                    EditableStatView(sheet: item, key: .name)
+                        .multilineTextAlignment(.leading)
+                }
+            } else {
+                Text(label)
             }
         }
     }
@@ -31,6 +56,12 @@ struct ItemTypeView: View {
     func handleSetType(to itemType: String) {
         if let item = spec.item {
             item.set(itemType, forKey: .itemType)
+        }
+    }
+    
+    func handleSetCustom() {
+        if let item = spec.item {
+            item.set("", forKey: .itemType)
         }
     }
 }

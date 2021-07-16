@@ -23,6 +23,7 @@ struct SheetHeaderView: View {
 
             ForEach(keys) { key in
                 EditableStatView(sheet: sheet, key: key)
+                    .multilineTextAlignment(.center)
             }
             .font(.body.weight(.bold))
         }

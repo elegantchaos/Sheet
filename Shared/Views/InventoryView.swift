@@ -6,37 +6,38 @@
 import Foundation
 import SwiftUI
 
-struct InventoryItemView: View {
-    @ObservedObject var item: Record
-    
-    var body: some View {
-        HStack {
-            EditableStatView(sheet: item, key: .name)
-            EditableStatView(sheet: item, key: .itemCount)
-            EditableStatView(sheet: item, key: .itemWeight)
-            EditableStatView(sheet: item, key: .itemEquipped)
-            EditableStatView(sheet: item, key: .itemType)
-        }
-    }
-}
 
 struct InventoryView: View {
+    @EnvironmentObject var context: Context
     @EnvironmentObject var system: GameSystem
     @ObservedObject var sheet: Record
     
     var body: some View {
         return List {
-            if let items = sheet.stat(forKey: .items) as? Set<Record>, let sorted = Array(items) {
-                ForEach(sorted) { item in
-                    InventoryItemView(item: item)
+            Section {
+                if let items = sheet.stat(forKey: .items) as? Set<Record>, let sorted = Array(items) {
+                    VStack(alignment: .leading, spacing: 0) {
+                        ForEach(sorted) { item in
+                            InventoryItemView(item: item)
+                                .listRowSeparator(.hidden)
+                                .listRowInsets(.init(top: 0, leading: 32, bottom: 0, trailing: 0))
+                        }
+                        .onDelete(perform: handleDelete)
+                    }
                 }
-                .onDelete(perform: handleDelete)
-            }
-            
-            Button(action: handleAddItem) {
-                Text("Add Item")
+            } header: {
+                HStack {
+                    Text("Inventory")
+                    if context.editing {
+                        Spacer()
+                        Button(action: handleAddItem) {
+                            Image(systemName: "plus")
+                        }
+                    }
+                }
             }
         }
+        
         #if os(macOS)
         .listStyle(.inset(alternatesRowBackgrounds: true))
         #else

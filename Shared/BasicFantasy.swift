@@ -46,6 +46,9 @@ class BasicFantasy: ObservableObject, GameRules {
         case capacityHeavy
         case capacityBoth
         
+        // items
+        case itemCount
+        
         var id: String {
             rawValue
         }
@@ -173,22 +176,14 @@ extension CharacterSheet {
         
         switch stat {
             case is String:
-                return editableString(forKey:key)
+                return stringBinding(forKey:key.rawValue)
                 
             case is Int:
-                return editableInteger(forKey:key)
+                return integerBinding(forKey:key.rawValue)
                 
             default:
                 return stat
         }
-    }
-    
-    func editableString(forKey key: BasicFantasy.Stat) -> Binding<String> {
-        editableString(forKey: key.rawValue)
-    }
-
-    func editableInteger(forKey key: BasicFantasy.Stat) -> Binding<Int> {
-        editableInteger(forKey: key.rawValue)
     }
 
     func modifiedCarryingCapacity(base: Int) -> Int {

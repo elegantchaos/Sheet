@@ -11,8 +11,8 @@ struct InventoryItemView: View {
     
     var body: some View {
         HStack {
-            EditableStringView(value: item.editableString(forKey: .name))
-            EditableIntegerView(value: item.editableInteger(forKey: "count"))
+            EditableStatView(sheet: item, key: .name)
+            EditableStatView(sheet: item, key: .itemCount)
         }
     }
 }
@@ -44,7 +44,7 @@ struct InventoryView: View {
         let item = CharacterSheet(context: sheet.managedObjectContext!)
         item.parent = sheet
         item.set("Untitled Item", forKey: .name)
-        item.set(1, forKey: "count")
+        item.set(1, forKey: .itemCount)
         try? sheet.save()
     }
     

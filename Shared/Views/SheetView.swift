@@ -17,7 +17,7 @@ struct SheetView: View {
         VStack {
             HStack {
                 Spacer()
-                EditableStringView(value: sheet.editableString(forKey: .name))
+                EditableStatView(sheet: sheet, key: .name)
                     .focused($nameFocussed)
                 Spacer()
             }
@@ -40,12 +40,6 @@ struct SheetView: View {
         }
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
-                Button(action: { system.randomize(sheet: sheet) }) {
-                    Text("Randomize")
-                }
-            }
-
-            ToolbarItem(placement: .bottomBar) {
                 Toggle("Edit", isOn: $context.editing)
                     .onChange(of: context.editing) { value in
                         nameFocussed = value
@@ -56,6 +50,11 @@ struct SheetView: View {
                     .toggleStyle(SwitchToggleStyle())
             }
 
+            ToolbarItem(placement: .bottomBar) {
+                Button(action: { system.randomize(sheet: sheet) }) {
+                    Text("Randomize")
+                }
+            }
         }
     }
 

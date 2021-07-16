@@ -22,7 +22,7 @@ struct AbilitiesView: View {
                         Text(ability.label)
                     }
 
-                    EditableIntegerView(value: sheet.editableInteger(forKey: ability))
+                    EditableStatView(sheet: sheet, key: ability)
                         .font(.body.weight(.bold))
 
                     Text(sheet.modifier(for: ability))

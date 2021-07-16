@@ -59,14 +59,14 @@ extension CharacterSheet {
         }
     }
     
-    func editableString(forKey key: String) -> Binding<String> {
+    func stringBinding(forKey key: String) -> Binding<String> {
         return Binding<String>(
             get: { self.string(forKey: key) ?? "" },
             set: { newValue in self.set(newValue, forKey: key) }
             )
     }
 
-    func editableInteger(forKey key: String) -> Binding<Int> {
+    func integerBinding(forKey key: String) -> Binding<Int> {
         return Binding<Int>(
             get: { self.integer(forKey: key) ?? 0 },
             set: { newValue in self.set(newValue, forKey: key) }

@@ -8,27 +8,27 @@ import Foundation
 typealias CharacterSheet = Record
 
 extension Record {
-    func string(forKey key: BasicFantasy.Stat) -> String? {
+    func string(forKey key: GameSystem.Stat) -> String? {
         stat(forKey: key) as? String
     }
 
-    func integer(forKey key: BasicFantasy.Stat) -> Int? {
+    func integer(forKey key: GameSystem.Stat) -> Int? {
         stat(forKey: key) as? Int
     }
     
-    func set(_ string: String, forKey key: BasicFantasy.Stat) {
+    func set(_ string: String, forKey key: GameSystem.Stat) {
         set(string, forKey: key.rawValue)
     }
     
-    func set(_ integer: Int, forKey key: BasicFantasy.Stat) {
+    func set(_ integer: Int, forKey key: GameSystem.Stat) {
         set(integer, forKey: key.rawValue)
     }
     
-    func append(_ record: Record, forKey key: BasicFantasy.Stat) {
+    func append(_ record: Record, forKey key: GameSystem.Stat) {
         append(record, forKey: key.rawValue)
     }
         
-    func has(key: BasicFantasy.Stat) -> Bool {
+    func has(key: GameSystem.Stat) -> Bool {
         if !has(key: key.rawValue) {
             for dependency in key.dependencies {
                 if !has(key: dependency) { return false}
@@ -38,7 +38,7 @@ extension Record {
         return true
     }
     
-    func binding(forKey key: BasicFantasy.Stat) -> Any? {
+    func binding(forKey key: GameSystem.Stat) -> Any? {
         guard let stat = stat(forKey: key) else { return nil }
         guard !key.isCalculated else { return stat }
         
@@ -64,41 +64,77 @@ extension Record {
     
     var isHalfling: Bool { string(forKey: .race)?.lowercased() == "halfling" }
 
-    func guaranteedEntry(forKey key: BasicFantasy.Stat) -> RecordEntry {
+    func guaranteedEntry(forKey key: GameSystem.Stat) -> RecordEntry {
         return guaranteedEntry(forKey: key.rawValue)
     }
     
-    func stat(forKey key: BasicFantasy.Stat) -> Any? {
+    func stat(forKey key: GameSystem.Stat) -> Any? {
         switch key {
-            case .hitsAndDamage:
-                guard let hits = integer(forKey: .hits) else { return nil }
-                guard let damage = integer(forKey: .damage) else { return nil }
-                return "\(hits - damage) / \(hits)"
-                
-            case .capacityLight:
-                return modifiedCarryingCapacity(base: isHalfling ? 50 : 60)
-
-            case .capacityHeavy:
-                return modifiedCarryingCapacity(base: isHalfling ? 100 : 150)
-
-            case .capacityBoth:
-                let isHalfling = self.isHalfling
-                let light = modifiedCarryingCapacity(base: isHalfling ? 50 : 60)
-                let heavy = modifiedCarryingCapacity(base: isHalfling ? 100 : 150)
-                let carrying = integer(forKey: .carrying) ?? 0
-                let status: WeightCarried.Status
-                if carrying < light {
-                    status = .normal
-                } else if carrying < heavy {
-                    status = .encumbered
-                } else {
-                    status = .overloaded
-                }
-                return WeightCarried(amount: carrying, status: status)
+            case .hitsAndDamage:    return hitsAndDamage
+            case .capacityLight:    return capacityLight
+            case .capacityHeavy:    return capacityHeavy
+            case .weightCarried:    return weightCarried
+            case .movement:         return movement
 
             default:
                 return stat(forKey: key.rawValue)
         }
+    }
+
+    var movement: String {
+        let baseMovement: Int
+        switch weightCarried.status {
+            case .normal: baseMovement = 40
+            case .encumbered: baseMovement = 30
+            case .overloaded: return "none"
+        }
+        
+        let movement = baseMovement + armourMovementPenalty
+        return "\(movement)'"
+    }
+    
+    var armourMovementPenalty: Int {
+        return 0
+    }
+    
+    var hitsAndDamage: String? {
+        guard let hits = integer(forKey: .hits) else { return nil }
+        guard let damage = integer(forKey: .damage) else { return nil }
+        return "\(hits - damage) / \(hits)"
+    }
+    
+    var capacityLight: Int {
+        return modifiedCarryingCapacity(base: isHalfling ? 50 : 60)
+    }
+    
+    var capacityHeavy: Int {
+        return modifiedCarryingCapacity(base: isHalfling ? 100 : 150)
+    }
+    
+    var itemsWeight: Int {
+        var weight = 0
+        if let items = stat(forKey: .items) as? Set<Record> {
+            for item in items {
+                weight += item.integer(forKey: .itemWeight) ?? 0
+            }
+        }
+        
+        return weight
+    }
+    
+    var weightCarried: WeightCarried {
+        var carrying = integer(forKey: .carrying) ?? 0
+        carrying += itemsWeight
+        
+        let status: WeightCarried.Status
+        if carrying < capacityLight {
+            status = .normal
+        } else if carrying < capacityHeavy {
+            status = .encumbered
+        } else {
+            status = .overloaded
+        }
+        return WeightCarried(amount: carrying, status: status)
     }
     
     var characterClass: BasicFantasy.CharacterClass? {
@@ -106,7 +142,7 @@ extension Record {
         return BasicFantasy.CharacterClass(rawValue: string)
     }
 
-    func modifierOffset(for detail: BasicFantasy.Stat) -> Int {
+    func modifierOffset(for detail: GameSystem.Stat) -> Int {
         guard let value = integer(forKey: detail) else { return 0 }
         switch value {
             case 3: return -3
@@ -119,7 +155,7 @@ extension Record {
         }
     }
     
-    func modifier(for detail: BasicFantasy.Stat) -> String {
+    func modifier(for detail: GameSystem.Stat) -> String {
         let offset = modifierOffset(for: detail)
         guard offset != 0, let string = BasicFantasy.modifierFormatter.string(for: offset) else { return "" }
         return string

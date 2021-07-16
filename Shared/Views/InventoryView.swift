@@ -13,11 +13,14 @@ struct InventoryItemView: View {
         HStack {
             EditableStatView(sheet: item, key: .name)
             EditableStatView(sheet: item, key: .itemCount)
+            EditableStatView(sheet: item, key: .itemWeight)
+            EditableStatView(sheet: item, key: .itemEquipped)
         }
     }
 }
 
 struct InventoryView: View {
+    @EnvironmentObject var system: GameSystem
     @ObservedObject var sheet: Record
     
     var body: some View {
@@ -45,6 +48,7 @@ struct InventoryView: View {
         item.set("Untitled Item", forKey: .name)
         item.set(1, forKey: .itemCount)
         sheet.append(item, forKey: .items)
+        system.randomize(item: item)
         try? sheet.save()
     }
     

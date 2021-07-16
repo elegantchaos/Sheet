@@ -12,6 +12,6 @@ protocol GameRules {
     
     init(savingThrows: SavingThrowTable)
     
-    var topStats: [Stat] { get }
+    var topStatsViewing: [Stat] { get }
     var abilityStats: [Stat] { get }
 }

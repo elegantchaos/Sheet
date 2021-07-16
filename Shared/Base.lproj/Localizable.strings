@@ -18,4 +18,4 @@ paralysisOrPetrify = "Paralysis or Petrify";
 dragonBreath = "Dragon Breath";
 spells = "Spells";
 
-capacityBoth = "carried";
+weightCarried = "carried";

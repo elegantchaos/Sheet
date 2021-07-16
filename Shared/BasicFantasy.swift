@@ -45,11 +45,24 @@ class BasicFantasy: ObservableObject, GameRules {
         case hitsAndDamage
         case capacityLight
         case capacityHeavy
-        case capacityBoth
+        case weightCarried
+        
         
         // items
         case items
+        case itemType
+        case itemWeight
+        case itemEquipped
         case itemCount
+
+        // armour
+        case armourClass
+        case armourAdjustment
+
+        // weapons
+        case meleeAdjustment
+        case rangedAdjustment
+        case damageAdjustment
         
         var id: String {
             rawValue
@@ -71,7 +84,7 @@ class BasicFantasy: ObservableObject, GameRules {
         var isCalculated: Bool {
             switch self {
                 case .hitsAndDamage,
-                        .capacityLight, .capacityHeavy, .capacityBoth,
+                        .capacityLight, .capacityHeavy, .weightCarried,
                         .movement:
                     return true
                     
@@ -81,8 +94,8 @@ class BasicFantasy: ObservableObject, GameRules {
         }
     }
     
-    let topStats: [Stat] = [.race, .gender, .class, .level, .age, .capacityBoth, .hitsAndDamage]
-    let topStatsEditing: [Stat] = [.race, .gender, .class, .level, .age, .carrying, .damage]
+    let topStatsViewing: [Stat] = [.race, .gender, .class, .level, .age, .weightCarried, .hitsAndDamage, .movement]
+    let topStatsEditing: [Stat] = [.race, .gender, .class, .level, .age, .carrying, .damage, .movement]
     let abilityStats: [Stat] = [.strength, .intelligence, .wisdom, .dexterity, .constitution, .charisma]
     
     enum CharacterClass: String, CaseIterable, RawIdentifiable, Codable {
@@ -124,7 +137,7 @@ class BasicFantasy: ObservableObject, GameRules {
         return savingThrows.value(for: throwIndex, class: characterClass.rawValue, race: race, level: level)
     }
     
-    func randomize(sheet: Record) {
+    func randomize(sheet: CharacterSheet) {
         sheet.objectWillChange.send()
 
         for ability in abilityStats {
@@ -132,17 +145,34 @@ class BasicFantasy: ObservableObject, GameRules {
             sheet.set(value, forKey: ability)
         }
         
-        sheet.set("human", forKey: .race)
-        sheet.set("male", forKey: .gender)
+        sheet.set(["human", "elf", "dwarf", "halfling"].randomElement()!, forKey: .race)
+        sheet.set(["male", "female"].randomElement()!, forKey: .gender)
         sheet.set(BasicFantasy.CharacterClass.allCases.randomElement()!.rawValue, forKey: .class)
         sheet.set(Int.random(in: 1...20), forKey: .level)
         sheet.set(Int.random(in: 16...100), forKey: .age)
         let hits = Int.random(in: 16...100)
         sheet.set(hits, forKey: .hits)
         sheet.set(Int.random(in: 0...hits), forKey: .damage)
+        sheet.set(Int.random(in: 0...200), forKey: .carrying)
 
+        if let items = sheet.stat(forKey: .items) as? Set<Record> {
+            for item in items {
+                randomize(item: item)
+            }
+        }
+        
         try? sheet.managedObjectContext?.save()
 
+    }
+    
+    func randomize(item: Record) {
+        item.set(Int.random(in: 1...100), forKey: .itemWeight)
+        item.set(Int.random(in: 0...1), forKey: .itemEquipped)
+        item.set(Int.random(in: 12...18), forKey: .armourClass)
+        item.set(Int.random(in: 0...1), forKey: .armourAdjustment)
+        item.set(Int.random(in: 0...1), forKey: .meleeAdjustment)
+        item.set(Int.random(in: 0...1), forKey: .rangedAdjustment)
+        item.set(Int.random(in: 0...1), forKey: .damageAdjustment)
     }
 }
 

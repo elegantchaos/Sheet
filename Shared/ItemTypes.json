@@ -1,12 +1,30 @@
 
 {
-    "backpack": {
-        "name": "Backpack",
-        "price": "5gp",
-    },
-    "hempRope": {
-        "name": "Rope (Hemp)",
-        "price": "1gp",
-        "weight": 5
-    }
+    "backpack": { "name": "Backpack", "price": 4.0, "weight": 0.1 },
+    "pouch": { "name": "Belt Pouch", "price": 1.0, "weight": 0.1 },
+    "bridle": { "name": "Bit and Bridle", "price": 1.5, "weight": 3 },
+    "candles": { "name": "Candles", "price": 1.0, "quantity": 12, "weight": 0.1 },
+    "chalk": { "name": "Chalk", "price": 2.0, "weight": 0.1, "notes": "Small bag of pieces" },
+    "cloak": { "name": "Cloak", "price": 2.0, "weight": 1.0 },
+    "clothing": { "name": "Clothing", "price": 2, "notes": "Common Outfit" },
+    "bottle": { "name": "Glass bottle", "price": 1.0, "weight": 0.1 },
+    "vial": { "name": "Glass vial", "price": 1.0, "weight": 0.1 },
+    "hook": { "name": "Grappling Hook", "price": 2.0, "weight": 4.0 },
+    "symbol": { "name": "Holy Symbol": "price": 25.0, "weight": 0.1 },
+    "holywater": { "name": "Holy Water, per vial", "price": 10.0, "weight": 0.1 },
+    "horseshoes": { "name": "Horseshoes", "price": 1, "weight": 10.0, "notes": "Includes shoeing" },
+    "ink": { "name": "Ink", "price": 8.0, "weight": 0.5, "notes": "Per Jar" },
+    "spikes": { "name": "Iron Spikes, 12", "price": 1.0, "quantity": 12, "weight": 1.0 },
+    "ladder": { "name": "Ladder", "price": 10, "notes": "10ft", "weight": 20.0 },
+    "lantern": { "name": "Lantern", "price": 5.0, "weight": 2.0 },
+    "bullseye": { "name": "Bullseye Lantern", "price": 14.0, "weight": 3.0 },
+    "hooded": { "name": "Hooded Lantern", "price": 8.0, "weight": 2.0 },
+    "manacles": { "name": "Manacles", "price": 6.0, "weight": 4.0, "notes": "Without Padlock" },
+    "mapcase": { "name": "Map Case", "price": 1.0, "weight": 0.5 },
+    "scrollcase": { "name": "Scroll Case", "price": 1.0, "weight": 0.5 },
+    "mirror": { "name": "Mirror", "price": 7.0, "weight": 0.1, "notes": "Small Metal" },
+    "oil": { "name": "Oil", "price": 1.0, "weight": 1.0, "notes":  "Per Flask" },
+    "padlock": { "name": "Padlock", "price": 12, "weight": 1.0, "notes" : "With 2 keys" }
 }
+
+

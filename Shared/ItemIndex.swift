@@ -1,18 +1,16 @@
-//
-//  ItemTypeIndex.swift
-//  ItemTypeIndex
-//
-//  Created by Sam Deane on 16/07/2021.
-//  Copyright © 2021 Elegant Chaos. All rights reserved.
-//
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+//  Created by Sam Deane on 19/07/21.
+//  All code (c) 2021 - present day, Elegant Chaos Limited.
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Foundation
 
 struct ItemIndex {
     struct CodedItem: Codable {
         let name: String
-        let price: String?
-        let weight: Int?
+        let price: Double?
+        let weight: Double?
+        let notes: String?
     }
     
     struct Item {
@@ -29,6 +27,10 @@ struct ItemIndex {
             }
             self.stats = stats
         }
+        
+        var name: String {
+            stats[.name] as? String ?? ""
+        }
     }
 
     struct ItemSpec {
@@ -39,7 +41,7 @@ struct ItemIndex {
     typealias CodedItems = [String: CodedItem]
     typealias Items = [String:Item]
 
-    let items: Items
+    fileprivate let items: Items
 
     var itemIds: [String] {
         return Array(items.keys)
@@ -56,4 +58,11 @@ struct ItemIndex {
         self.items = decoded.mapValues({ Item($0) })
     }
 
+    func item(withID itemID: String) -> ItemIndex.Item? {
+        items[itemID]
+    }
+    
+    var randomItemID: String {
+        items.keys.randomElement()!
+    }
 }

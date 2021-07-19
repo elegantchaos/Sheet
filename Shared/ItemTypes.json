@@ -10,7 +10,7 @@
     "bottle": { "name": "Glass bottle", "price": 1.0, "weight": 0.1 },
     "vial": { "name": "Glass vial", "price": 1.0, "weight": 0.1 },
     "hook": { "name": "Grappling Hook", "price": 2.0, "weight": 4.0 },
-    "symbol": { "name": "Holy Symbol": "price": 25.0, "weight": 0.1 },
+    "symbol": { "name": "Holy Symbol", "price": 25.0, "weight": 0.1 },
     "holywater": { "name": "Holy Water, per vial", "price": 10.0, "weight": 0.1 },
     "horseshoes": { "name": "Horseshoes", "price": 1, "weight": 10.0, "notes": "Includes shoeing" },
     "ink": { "name": "Ink", "price": 8.0, "weight": 0.5, "notes": "Per Jar" },

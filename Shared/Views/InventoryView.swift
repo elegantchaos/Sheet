@@ -30,7 +30,7 @@ struct InventoryView: View {
                     Text("Inventory")
                     if context.editing {
                         Spacer()
-                        Button(action: handleAddItem) {
+                        ItemTypeMenu(action: handleAddItem) {
                             Image(systemName: "plus")
                         }
                     }
@@ -45,7 +45,7 @@ struct InventoryView: View {
         #endif
     }
 
-    func handleAddItem() {
+    func handleAddItem(_ id: String?) {
         let item = Record(context: sheet.managedObjectContext!)
         item.set("Untitled Item", forKey: .name)
         item.set(1, forKey: .itemCount)

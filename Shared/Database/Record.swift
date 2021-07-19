@@ -13,6 +13,8 @@ extension Record {
         case array
         case string
         case integer
+        case double
+        case bool
     }
     
     public override func awakeFromInsert() {
@@ -32,6 +34,8 @@ extension Record {
             case .integer: return Int(stat.integer)
             case .string: return stat.string
             case .array: return stat.children as? Set<Record>
+            case .double: return stat.double
+            case .bool: return stat.integer != 0
         }
     }
     
@@ -43,6 +47,14 @@ extension Record {
         return stat(forKey: key) as? Int
     }
 
+    func double(forKey key: String) -> Double? {
+        return stat(forKey: key) as? Double
+    }
+
+    func bool(forKey key: String) -> Bool? {
+        return stat(forKey: key) as? Bool
+    }
+    
     func guaranteedEntry(forKey key: String) -> RecordEntry {
         if let stats = entries as? Set<RecordEntry>, let stat = stats.first(where: { $0.key == key }) {
             return stat
@@ -74,7 +86,28 @@ extension Record {
             entry.type = type
         }
     }
-    
+
+    func set(_ double: Double, forKey key: String) {
+        let entry = guaranteedEntry(forKey: key)
+        let type = Int16(EntryType.double.rawValue)
+        if (entry.type != type) || (entry.double != double) {
+            objectWillChange.send()
+            entry.double = double
+            entry.type = type
+        }
+    }
+
+    func set(_ bool: Bool, forKey key: String) {
+        let entry = guaranteedEntry(forKey: key)
+        let type = Int16(EntryType.bool.rawValue)
+        let newValue = Int64(bool ? 1 : 0)
+        if (entry.type != type) || (entry.integer != newValue) {
+            objectWillChange.send()
+            entry.integer = newValue
+            entry.type = type
+        }
+    }
+
     func append(_ record: Record, forKey key: String) {
         let entry = guaranteedEntry(forKey: key)
         objectWillChange.send()

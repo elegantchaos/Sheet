@@ -17,3 +17,4 @@ protocol GameRules {
     
     var itemIndex: ItemIndex { get }
 }
+

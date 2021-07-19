@@ -16,7 +16,7 @@ struct ItemTypeView: View {
         let label: String
         let isCustom: Bool
 
-        if let id = spec.id, let item = system.itemIndex.items[id], let name = item.stats[.name] as? String {
+        if let id = spec.id, let item = system.itemIndex.item(withID: id), let name = item.stats[.name] as? String {
             label = name
             isCustom = false
         } else if !context.editing, let item = spec.item, let name = item.string(forKey: .name) {

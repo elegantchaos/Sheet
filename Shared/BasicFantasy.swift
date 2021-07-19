@@ -176,7 +176,7 @@ class BasicFantasy: ObservableObject, GameRules {
         item.set(Int.random(in: 0...1), forKey: .meleeAdjustment)
         item.set(Int.random(in: 0...1), forKey: .rangedAdjustment)
         item.set(Int.random(in: 0...1), forKey: .damageAdjustment)
-        item.set(itemIndex.items.keys.randomElement()!, forKey: .itemType)
+        item.set(itemIndex.randomItemID, forKey: .itemType)
     }
 }
 

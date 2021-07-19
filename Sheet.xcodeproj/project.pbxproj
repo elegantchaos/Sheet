@@ -26,6 +26,7 @@
 		8B184EFB26A1D5B100D4687E /* ItemTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B184EFA26A1D5B100D4687E /* ItemTypes.json */; };
 		8B184EFD26A1DC7600D4687E /* ItemTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B184EFC26A1DC7600D4687E /* ItemTypeView.swift */; };
 		8B184EFF26A1E3CF00D4687E /* InventoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B184EFE26A1E3CF00D4687E /* InventoryItemView.swift */; };
+		8B184F0926A5976100D4687E /* ItemTypeMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B184F0826A5976100D4687E /* ItemTypeMenu.swift */; };
 		8BFAF4DD26A095000096893C /* SheetHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFAF4DC26A095000096893C /* SheetHeaderView.swift */; };
 		8BFAF4DF26A097D50096893C /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFAF4DE26A097D50096893C /* InventoryView.swift */; };
 		8BFDFDDB269DA25D0091F150 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFDFDDA269DA25D0091F150 /* Tests_iOS.swift */; };
@@ -69,6 +70,7 @@
 		8B184EFA26A1D5B100D4687E /* ItemTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ItemTypes.json; sourceTree = "<group>"; };
 		8B184EFC26A1DC7600D4687E /* ItemTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTypeView.swift; sourceTree = "<group>"; };
 		8B184EFE26A1E3CF00D4687E /* InventoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryItemView.swift; sourceTree = "<group>"; };
+		8B184F0826A5976100D4687E /* ItemTypeMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTypeMenu.swift; sourceTree = "<group>"; };
 		8BFAF4DC26A095000096893C /* SheetHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetHeaderView.swift; sourceTree = "<group>"; };
 		8BFAF4DE26A097D50096893C /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
 		8BFDFDC2269DA25B0091F150 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				8B184EEB26A1AC1600D4687E /* StatView.swift */,
 				8B184EED26A1AC1B00D4687E /* WeightCarriedView.swift */,
 				8B184EFC26A1DC7600D4687E /* ItemTypeView.swift */,
+				8B184F0826A5976100D4687E /* ItemTypeMenu.swift */,
 				8B184EE926A1A0C500D4687E /* EditableStatView.swift */,
 				8B1578E6269F06DD00073D0F /* EditableIntegerView.swift */,
 			);
@@ -334,6 +337,7 @@
 				8BFDFDE8269DA25D0091F150 /* SheetApp.swift in Sources */,
 				8B184EEE26A1AC1B00D4687E /* WeightCarriedView.swift in Sources */,
 				8BFDFE02269DA6BA0091F150 /* SheetView.swift in Sources */,
+				8B184F0926A5976100D4687E /* ItemTypeMenu.swift in Sources */,
 				8B1578E7269F06DD00073D0F /* EditableIntegerView.swift in Sources */,
 				8BFDFE10269DB3160091F150 /* IndexView.swift in Sources */,
 				8B1578E5269EFDB100073D0F /* EditableStringView.swift in Sources */,

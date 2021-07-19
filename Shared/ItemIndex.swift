@@ -32,11 +32,6 @@ struct ItemIndex {
             stats[.name] as? String ?? ""
         }
     }
-
-    struct ItemSpec {
-        let id: String?
-        let item: Record?
-    }
     
     typealias CodedItems = [String: CodedItem]
     typealias Items = [String:Item]
@@ -59,7 +54,11 @@ struct ItemIndex {
     }
 
     func item(withID itemID: String) -> ItemIndex.Item? {
-        items[itemID]
+        let result = items[itemID]
+        if result == nil {
+            print("no item \(itemID)")
+        }
+        return result
     }
     
     var randomItemID: String {

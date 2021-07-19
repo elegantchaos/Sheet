@@ -11,7 +11,8 @@ struct InventoryItemView: View {
     
     var body: some View {
         HStack {
-            EditableStatView(sheet: item, key: .itemType)
+            ItemTypeView(item: item)
+//            EditableStatView(sheet: item, key: .itemType)
 
             Spacer()
 

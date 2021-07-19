@@ -9,17 +9,16 @@ import SwiftUI
 struct ItemTypeView: View {
     @EnvironmentObject var context: Context
     @EnvironmentObject var system: GameSystem
-    
-    let spec: ItemIndex.ItemSpec
+    @ObservedObject var item: Record
     
     var body: some View {
         let label: String
         let isCustom: Bool
 
-        if let id = spec.id, let item = system.itemIndex.item(withID: id), let name = item.stats[.name] as? String {
-            label = name
+        if let id = item.string(forKey: .itemType), let itemType = system.itemIndex.item(withID: id) {
+            label = itemType.name
             isCustom = false
-        } else if !context.editing, let item = spec.item, let name = item.string(forKey: .name) {
+        } else if !context.editing, let name = item.string(forKey: .name) {
             label = name
             isCustom = true
         } else {
@@ -29,21 +28,11 @@ struct ItemTypeView: View {
         
         return HStack {
             if context.editing {
-                Menu(label) {
-                    Button(action: handleSetCustom ) {
-                        Text("Custom")
-                    }
-
-                    Divider()
-                    
-                    ForEach(system.itemIndex.itemIds, id: \.self) { item in
-                        Button(action: { handleSetType(to: item) }) {
-                            Text(item)
-                        }
-                    }
+                ItemTypeMenu(action: handleSetType) {
+                    Text(label)
                 }
-                
-                if isCustom, let item = spec.item {
+                                
+                if isCustom {
                     EditableStatView(sheet: item, key: .name)
                         .multilineTextAlignment(.leading)
                 }
@@ -53,15 +42,7 @@ struct ItemTypeView: View {
         }
     }
     
-    func handleSetType(to itemType: String) {
-        if let item = spec.item {
-            item.set(itemType, forKey: .itemType)
-        }
-    }
-    
-    func handleSetCustom() {
-        if let item = spec.item {
-            item.set("", forKey: .itemType)
-        }
+    func handleSetType(to itemID: String?) {
+        item.set(itemID ?? "", forKey: .itemType)
     }
 }

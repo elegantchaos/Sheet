@@ -6,9 +6,9 @@
 import Foundation
 import SwiftUI
 import CoreData
+import CoreDataExtensions
 
-
-extension Record {
+public final class Record: NSManagedObject, IdentifiedManagedObject {
     enum EntryType: Int {
         case array
         case string
@@ -17,8 +17,18 @@ extension Record {
         case bool
     }
     
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<Record> {
+        return NSFetchRequest<Record>(entityName: "Record")
+    }
+
+    @NSManaged public var id: String
+    @NSManaged public var entries: NSSet?
+    @NSManaged public var parent: RecordEntry?
+    @NSManaged public var protoclients: NSSet?
+    @NSManaged public var prototype: Record?
+
     public override func awakeFromInsert() {
-        uuid = UUID()
+        id = UUID().uuidString
         set("Untitled", forKey: "name")
     }
     
@@ -131,12 +141,5 @@ extension Record {
 
     func save() throws {
         try managedObjectContext?.save()
-    }
-}
-
-extension Record {
-    public var id: String {
-        uuid = uuid ?? UUID()
-        return uuid!.uuidString
     }
 }

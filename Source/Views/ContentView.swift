@@ -16,8 +16,8 @@ struct ContentView: View {
     private var items: FetchedResults<Record>
     
     var body: some View {
-        if items.count > 0 {
-            SheetView(sheet: items.first!)
+        if items.count > 0, let sheet = items.first(where: { !$0.id.starts(with: "item-") }) {
+            SheetView(sheet: sheet)
                 .padding()
         } else {
             Button(action: handleNewSheet) {

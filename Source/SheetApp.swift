@@ -19,6 +19,8 @@ struct SheetApp: App {
         let system = BasicFantasy(savingThrows: savingThrows, itemIndex: items)
 
         self.system = system
+        
+        items.update(container: persistenceController.container)
     }
     
     var body: some Scene {

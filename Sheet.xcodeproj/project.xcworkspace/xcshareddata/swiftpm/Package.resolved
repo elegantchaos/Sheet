@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CoreDataExtensions",
+        "repositoryURL": "https://github.com/elegantchaos/CoreDataExtensions.git",
+        "state": {
+          "branch": null,
+          "revision": "c8d8e123e0f1b194d7cab24565f5c59a0c091868",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "package": "Logger",
+        "repositoryURL": "https://github.com/elegantchaos/Logger.git",
+        "state": {
+          "branch": null,
+          "revision": "0f404f713ccf80c659e45c0af80b4d7b2160ebee",
+          "version": "1.7.2"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

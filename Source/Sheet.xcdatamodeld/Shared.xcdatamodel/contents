@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19178.1" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
-    <entity name="Record" representedClassName="Record" syncable="YES" codeGenerationType="class">
-        <attribute name="uuid" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+    <entity name="Record" representedClassName=".Record" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String"/>
         <relationship name="entries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RecordEntry" inverseName="record" inverseEntity="RecordEntry"/>
         <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RecordEntry" inverseName="children" inverseEntity="RecordEntry"/>
+        <relationship name="protoclients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Record" inverseName="prototype" inverseEntity="Record"/>
+        <relationship name="prototype" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Record" inverseName="protoclients" inverseEntity="Record"/>
     </entity>
-    <entity name="RecordEntry" representedClassName="RecordEntry" syncable="YES" codeGenerationType="class">
+    <entity name="RecordEntry" representedClassName=".RecordEntry" syncable="YES" codeGenerationType="class">
         <attribute name="double" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="integer" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="key" optional="YES" attributeType="String"/>
@@ -15,7 +17,7 @@
         <relationship name="record" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Record" inverseName="entries" inverseEntity="Record"/>
     </entity>
     <elements>
-        <element name="Record" positionX="-63" positionY="-18" width="128" height="74"/>
+        <element name="Record" positionX="-63" positionY="-18" width="128" height="104"/>
         <element name="RecordEntry" positionX="-63" positionY="90" width="128" height="134"/>
     </elements>
 </model>

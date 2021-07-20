@@ -15,7 +15,15 @@ extension Record {
     func integer(forKey key: GameSystem.Stat) -> Int? {
         stat(forKey: key) as? Int
     }
-    
+
+    func double(forKey key: GameSystem.Stat) -> Double? {
+        stat(forKey: key) as? Double
+    }
+
+    func bool(forKey key: GameSystem.Stat) -> Bool? {
+        stat(forKey: key) as? Bool
+    }
+
     func set(_ string: String, forKey key: GameSystem.Stat) {
         set(string, forKey: key.rawValue)
     }
@@ -23,7 +31,15 @@ extension Record {
     func set(_ integer: Int, forKey key: GameSystem.Stat) {
         set(integer, forKey: key.rawValue)
     }
-    
+
+    func set(_ double: Double, forKey key: GameSystem.Stat) {
+        set(double, forKey: key.rawValue)
+    }
+
+    func set(_ bool: Bool, forKey key: GameSystem.Stat) {
+        set(bool, forKey: key.rawValue)
+    }
+
     func append(_ record: Record, forKey key: GameSystem.Stat) {
         append(record, forKey: key.rawValue)
     }

@@ -52,7 +52,6 @@ class BasicFantasy: ObservableObject, GameRules {
         
         // items
         case items
-        case itemType
         case itemWeight
         case itemEquipped
         case itemGuidePrice
@@ -176,7 +175,9 @@ class BasicFantasy: ObservableObject, GameRules {
         item.set(Int.random(in: 0...1), forKey: .meleeAdjustment)
         item.set(Int.random(in: 0...1), forKey: .rangedAdjustment)
         item.set(Int.random(in: 0...1), forKey: .damageAdjustment)
-        item.set(itemIndex.randomItemID, forKey: .itemType)
+        
+        let itemType = itemIndex.item(withID: itemIndex.randomItemID)
+        item.prototype = itemType
     }
 }
 

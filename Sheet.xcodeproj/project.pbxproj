@@ -22,11 +22,12 @@
 		8B184EEE26A1AC1B00D4687E /* WeightCarriedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B184EED26A1AC1B00D4687E /* WeightCarriedView.swift */; };
 		8B184EF026A1B6B900D4687E /* WeightCarried.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B184EEF26A1B6B900D4687E /* WeightCarried.swift */; };
 		8B184EF226A1B7F400D4687E /* CharacterSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B184EF126A1B7F400D4687E /* CharacterSheet.swift */; };
-		8B184EF926A1D55A00D4687E /* ItemIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B184EF826A1D55A00D4687E /* ItemIndex.swift */; };
 		8B184EFB26A1D5B100D4687E /* ItemTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B184EFA26A1D5B100D4687E /* ItemTypes.json */; };
 		8B184EFD26A1DC7600D4687E /* ItemTypeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B184EFC26A1DC7600D4687E /* ItemTypeView.swift */; };
 		8B184EFF26A1E3CF00D4687E /* InventoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B184EFE26A1E3CF00D4687E /* InventoryItemView.swift */; };
 		8B184F0926A5976100D4687E /* ItemTypeMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B184F0826A5976100D4687E /* ItemTypeMenu.swift */; };
+		8B1E857926A728F800E14DBD /* ItemIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1E857826A728F800E14DBD /* ItemIndex.swift */; };
+		8B1E857F26A72D4100E14DBD /* CoreDataExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B1E857E26A72D4100E14DBD /* CoreDataExtensions */; };
 		8BFAF4DD26A095000096893C /* SheetHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFAF4DC26A095000096893C /* SheetHeaderView.swift */; };
 		8BFAF4DF26A097D50096893C /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFAF4DE26A097D50096893C /* InventoryView.swift */; };
 		8BFDFDDB269DA25D0091F150 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFDFDDA269DA25D0091F150 /* Tests_iOS.swift */; };
@@ -66,11 +67,11 @@
 		8B184EED26A1AC1B00D4687E /* WeightCarriedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightCarriedView.swift; sourceTree = "<group>"; };
 		8B184EEF26A1B6B900D4687E /* WeightCarried.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightCarried.swift; sourceTree = "<group>"; };
 		8B184EF126A1B7F400D4687E /* CharacterSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSheet.swift; sourceTree = "<group>"; };
-		8B184EF826A1D55A00D4687E /* ItemIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemIndex.swift; sourceTree = "<group>"; };
 		8B184EFA26A1D5B100D4687E /* ItemTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ItemTypes.json; sourceTree = "<group>"; };
 		8B184EFC26A1DC7600D4687E /* ItemTypeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTypeView.swift; sourceTree = "<group>"; };
 		8B184EFE26A1E3CF00D4687E /* InventoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryItemView.swift; sourceTree = "<group>"; };
 		8B184F0826A5976100D4687E /* ItemTypeMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTypeMenu.swift; sourceTree = "<group>"; };
+		8B1E857826A728F800E14DBD /* ItemIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemIndex.swift; path = Source/ItemIndex.swift; sourceTree = SOURCE_ROOT; };
 		8BFAF4DC26A095000096893C /* SheetHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetHeaderView.swift; sourceTree = "<group>"; };
 		8BFAF4DE26A097D50096893C /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
 		8BFDFDC2269DA25B0091F150 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
@@ -94,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B1E857F26A72D4100E14DBD /* CoreDataExtensions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,17 +147,25 @@
 			path = Database;
 			sourceTree = "<group>";
 		};
+		8B1E857A26A72A0F00E14DBD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8BFDFDBB269DA25B0091F150 = {
 			isa = PBXGroup;
 			children = (
 				8BFDFE0B269DA8340091F150 /* Sheet.entitlements */,
-				8BFDFDC0269DA25B0091F150 /* Shared */,
-				8BFDFDD9269DA25D0091F150 /* Tests iOS */,
+				8BFDFDC0269DA25B0091F150 /* Source */,
+				8BFDFDD9269DA25D0091F150 /* Tests */,
 				8BFDFDCC269DA25D0091F150 /* Products */,
+				8B1E857A26A72A0F00E14DBD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		8BFDFDC0269DA25B0091F150 /* Shared */ = {
+		8BFDFDC0269DA25B0091F150 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				8BFDFDC3269DA25B0091F150 /* SheetApp.swift */,
@@ -167,14 +177,14 @@
 				8B1577C1269DE65300073D0F /* BasicFantasy.swift */,
 				8B184EF126A1B7F400D4687E /* CharacterSheet.swift */,
 				8B1578E8269F2A1E00073D0F /* GameRules.swift */,
-				8B184EF826A1D55A00D4687E /* ItemIndex.swift */,
 				8B184EFA26A1D5B100D4687E /* ItemTypes.json */,
+				8B1E857826A728F800E14DBD /* ItemIndex.swift */,
 				8BFDFE20269DD01F0091F150 /* Localizable.strings */,
 				8B1577C3269DFB5300073D0F /* SavingThrows.json */,
 				8BFDFDC6269DA25D0091F150 /* Assets.xcassets */,
 				8BFDFDC1269DA25B0091F150 /* Sheet.xcdatamodeld */,
 			);
-			path = Shared;
+			path = Source;
 			sourceTree = "<group>";
 		};
 		8BFDFDCC269DA25D0091F150 /* Products */ = {
@@ -187,12 +197,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8BFDFDD9269DA25D0091F150 /* Tests iOS */ = {
+		8BFDFDD9269DA25D0091F150 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				8BFDFDDA269DA25D0091F150 /* Tests_iOS.swift */,
 			);
-			path = "Tests iOS";
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,6 +221,9 @@
 			dependencies = (
 			);
 			name = "Sheet (iOS)";
+			packageProductDependencies = (
+				8B1E857E26A72D4100E14DBD /* CoreDataExtensions */,
+			);
 			productName = "Sheet (iOS)";
 			productReference = 8BFDFDCB269DA25D0091F150 /* Sheet.app */;
 			productType = "com.apple.product-type.application";
@@ -283,6 +296,9 @@
 				Base,
 			);
 			mainGroup = 8BFDFDBB269DA25B0091F150;
+			packageReferences = (
+				8B1E857D26A72D4100E14DBD /* XCRemoteSwiftPackageReference "CoreDataExtensions" */,
+			);
 			productRefGroup = 8BFDFDCC269DA25D0091F150 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -328,7 +344,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BFDFDE6269DA25D0091F150 /* Sheet.xcdatamodeld in Sources */,
-				8B184EF926A1D55A00D4687E /* ItemIndex.swift in Sources */,
 				8B1577C2269DE65300073D0F /* BasicFantasy.swift in Sources */,
 				8BFAF4DD26A095000096893C /* SheetHeaderView.swift in Sources */,
 				8BFAF4DF26A097D50096893C /* InventoryView.swift in Sources */,
@@ -342,6 +357,7 @@
 				8BFDFE10269DB3160091F150 /* IndexView.swift in Sources */,
 				8B1578E5269EFDB100073D0F /* EditableStringView.swift in Sources */,
 				8BFDFE0D269DA9C60091F150 /* Record.swift in Sources */,
+				8B1E857926A728F800E14DBD /* ItemIndex.swift in Sources */,
 				8B184EFD26A1DC7600D4687E /* ItemTypeView.swift in Sources */,
 				8B184EEC26A1AC1600D4687E /* StatView.swift in Sources */,
 				8B184EFF26A1E3CF00D4687E /* InventoryItemView.swift in Sources */,
@@ -711,6 +727,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8B1E857D26A72D4100E14DBD /* XCRemoteSwiftPackageReference "CoreDataExtensions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elegantchaos/CoreDataExtensions.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8B1E857E26A72D4100E14DBD /* CoreDataExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B1E857D26A72D4100E14DBD /* XCRemoteSwiftPackageReference "CoreDataExtensions" */;
+			productName = CoreDataExtensions;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		8BFDFDC1269DA25B0091F150 /* Sheet.xcdatamodeld */ = {

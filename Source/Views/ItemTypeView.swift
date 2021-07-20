@@ -15,8 +15,8 @@ struct ItemTypeView: View {
         let label: String
         let isCustom: Bool
 
-        if let id = item.string(forKey: .itemType), let itemType = system.itemIndex.item(withID: id) {
-            label = itemType.name
+        if let itemType = item.prototype, let name = itemType.string(forKey: .name) {
+            label = name
             isCustom = false
         } else if !context.editing, let name = item.string(forKey: .name) {
             label = name
@@ -43,6 +43,10 @@ struct ItemTypeView: View {
     }
     
     func handleSetType(to itemID: String?) {
-        item.set(itemID ?? "", forKey: .itemType)
+        if let id = itemID, let itemType = system.itemIndex.item(withID: id) {
+            item.prototype = itemType
+        } else {
+            item.prototype = nil
+        }
     }
 }

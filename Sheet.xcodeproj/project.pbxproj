@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		8B1577BE269DD5CE00073D0F /* AbilitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1577BD269DD5CE00073D0F /* AbilitiesView.swift */; };
 		8B1577C2269DE65300073D0F /* BasicFantasy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1577C1269DE65300073D0F /* BasicFantasy.swift */; };
-		8B1577C4269DFB5300073D0F /* SavingThrows.json in Sources */ = {isa = PBXBuildFile; fileRef = 8B1577C3269DFB5300073D0F /* SavingThrows.json */; };
 		8B1577C6269DFC0100073D0F /* SavingThrowTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1577C5269DFC0100073D0F /* SavingThrowTable.swift */; };
 		8B157853269DFEF400073D0F /* SavingThrows.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B1577C3269DFB5300073D0F /* SavingThrows.json */; };
 		8B1578E1269EF47D00073D0F /* SavingThrowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1578E0269EF47D00073D0F /* SavingThrowsView.swift */; };
@@ -17,8 +16,8 @@
 		8B1578E5269EFDB100073D0F /* EditableStringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1578E4269EFDB100073D0F /* EditableStringView.swift */; };
 		8B1578E7269F06DD00073D0F /* EditableIntegerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1578E6269F06DD00073D0F /* EditableIntegerView.swift */; };
 		8B1578E9269F2A1E00073D0F /* GameRules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1578E8269F2A1E00073D0F /* GameRules.swift */; };
-		8B184EEA26A1A0C500D4687E /* EditableStatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B184EE926A1A0C500D4687E /* EditableStatView.swift */; };
-		8B184EEC26A1AC1600D4687E /* StatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B184EEB26A1AC1600D4687E /* StatView.swift */; };
+		8B184EEA26A1A0C500D4687E /* StatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B184EE926A1A0C500D4687E /* StatView.swift */; };
+		8B184EEC26A1AC1600D4687E /* TypedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B184EEB26A1AC1600D4687E /* TypedView.swift */; };
 		8B184EEE26A1AC1B00D4687E /* WeightCarriedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B184EED26A1AC1B00D4687E /* WeightCarriedView.swift */; };
 		8B184EF026A1B6B900D4687E /* WeightCarried.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B184EEF26A1B6B900D4687E /* WeightCarried.swift */; };
 		8B184EF226A1B7F400D4687E /* CharacterSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B184EF126A1B7F400D4687E /* CharacterSheet.swift */; };
@@ -62,8 +61,8 @@
 		8B1578E4269EFDB100073D0F /* EditableStringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableStringView.swift; sourceTree = "<group>"; };
 		8B1578E6269F06DD00073D0F /* EditableIntegerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableIntegerView.swift; sourceTree = "<group>"; };
 		8B1578E8269F2A1E00073D0F /* GameRules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRules.swift; sourceTree = "<group>"; };
-		8B184EE926A1A0C500D4687E /* EditableStatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableStatView.swift; sourceTree = "<group>"; };
-		8B184EEB26A1AC1600D4687E /* StatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatView.swift; sourceTree = "<group>"; };
+		8B184EE926A1A0C500D4687E /* StatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatView.swift; sourceTree = "<group>"; };
+		8B184EEB26A1AC1600D4687E /* TypedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypedView.swift; sourceTree = "<group>"; };
 		8B184EED26A1AC1B00D4687E /* WeightCarriedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightCarriedView.swift; sourceTree = "<group>"; };
 		8B184EEF26A1B6B900D4687E /* WeightCarried.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightCarried.swift; sourceTree = "<group>"; };
 		8B184EF126A1B7F400D4687E /* CharacterSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSheet.swift; sourceTree = "<group>"; };
@@ -128,11 +127,11 @@
 				8B1578E0269EF47D00073D0F /* SavingThrowsView.swift */,
 				8BFDFE0F269DB3160091F150 /* IndexView.swift */,
 				8B1578E4269EFDB100073D0F /* EditableStringView.swift */,
-				8B184EEB26A1AC1600D4687E /* StatView.swift */,
+				8B184EEB26A1AC1600D4687E /* TypedView.swift */,
 				8B184EED26A1AC1B00D4687E /* WeightCarriedView.swift */,
 				8B184EFC26A1DC7600D4687E /* ItemTypeView.swift */,
 				8B184F0826A5976100D4687E /* ItemTypeMenu.swift */,
-				8B184EE926A1A0C500D4687E /* EditableStatView.swift */,
+				8B184EE926A1A0C500D4687E /* StatView.swift */,
 				8B1578E6269F06DD00073D0F /* EditableIntegerView.swift */,
 			);
 			path = Views;
@@ -208,9 +207,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8BFDFDCA269DA25D0091F150 /* Sheet (iOS) */ = {
+		8BFDFDCA269DA25D0091F150 /* Sheet */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8BFDFDF2269DA25D0091F150 /* Build configuration list for PBXNativeTarget "Sheet (iOS)" */;
+			buildConfigurationList = 8BFDFDF2269DA25D0091F150 /* Build configuration list for PBXNativeTarget "Sheet" */;
 			buildPhases = (
 				8BFDFDC7269DA25D0091F150 /* Sources */,
 				8BFDFDC8269DA25D0091F150 /* Frameworks */,
@@ -220,7 +219,7 @@
 			);
 			dependencies = (
 			);
-			name = "Sheet (iOS)";
+			name = Sheet;
 			packageProductDependencies = (
 				8B1E857E26A72D4100E14DBD /* CoreDataExtensions */,
 			);
@@ -303,7 +302,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8BFDFDCA269DA25D0091F150 /* Sheet (iOS) */,
+				8BFDFDCA269DA25D0091F150 /* Sheet */,
 				8BFDFDD5269DA25D0091F150 /* Tests iOS */,
 				8BFDFDDF269DA25D0091F150 /* Tests macOS */,
 			);
@@ -359,13 +358,12 @@
 				8BFDFE0D269DA9C60091F150 /* Record.swift in Sources */,
 				8B1E857926A728F800E14DBD /* ItemIndex.swift in Sources */,
 				8B184EFD26A1DC7600D4687E /* ItemTypeView.swift in Sources */,
-				8B184EEC26A1AC1600D4687E /* StatView.swift in Sources */,
+				8B184EEC26A1AC1600D4687E /* TypedView.swift in Sources */,
 				8B184EFF26A1E3CF00D4687E /* InventoryItemView.swift in Sources */,
 				8B1577C6269DFC0100073D0F /* SavingThrowTable.swift in Sources */,
 				8BFDFDEA269DA25D0091F150 /* ContentView.swift in Sources */,
-				8B184EEA26A1A0C500D4687E /* EditableStatView.swift in Sources */,
+				8B184EEA26A1A0C500D4687E /* StatView.swift in Sources */,
 				8B184EF226A1B7F400D4687E /* CharacterSheet.swift in Sources */,
-				8B1577C4269DFB5300073D0F /* SavingThrows.json in Sources */,
 				8B1577BE269DD5CE00073D0F /* AbilitiesView.swift in Sources */,
 				8B1578E1269EF47D00073D0F /* SavingThrowsView.swift in Sources */,
 				8B1578E9269F2A1E00073D0F /* GameRules.swift in Sources */,
@@ -393,7 +391,7 @@
 /* Begin PBXTargetDependency section */
 		8BFDFDD8269DA25D0091F150 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8BFDFDCA269DA25D0091F150 /* Sheet (iOS) */;
+			target = 8BFDFDCA269DA25D0091F150 /* Sheet */;
 			targetProxy = 8BFDFDD7269DA25D0091F150 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -699,7 +697,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8BFDFDF2269DA25D0091F150 /* Build configuration list for PBXNativeTarget "Sheet (iOS)" */ = {
+		8BFDFDF2269DA25D0091F150 /* Build configuration list for PBXNativeTarget "Sheet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8BFDFDF3269DA25D0091F150 /* Debug */,

@@ -10,20 +10,26 @@ struct InventoryItemView: View {
     @ObservedObject var item: Record
     
     var body: some View {
-        HStack {
+        let count = item.integer(forKey: .itemCount) ?? 0
+        return HStack {
+            if context.editing || count > 1 {
+                StatView(sheet: item, key: .itemCount)
+                Text("×")
+            }
+
             ItemTypeView(item: item)
 //            EditableStatView(sheet: item, key: .itemType)
 
             Spacer()
 
-            if context.editing || (item.integer(forKey: .itemCount) ?? 0) > 1 {
-                Text("×")
-                EditableStatView(sheet: item, key: .itemCount)
-            }
+
+            let weight = item.double(forKey: .itemWeight) ?? 0.0
+            let entryWeight = weight * Double(count)
+            Text(entryWeight, format: .number)
 
             if context.editing {
-                EditableStatView(sheet: item, key: .itemWeight)
-                EditableStatView(sheet: item, key: .itemEquipped)
+                StatView(sheet: item, key: .itemWeight)
+                StatView(sheet: item, key: .itemEquipped)
             }
         }
     }

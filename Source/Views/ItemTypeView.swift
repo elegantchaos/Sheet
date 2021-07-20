@@ -33,7 +33,7 @@ struct ItemTypeView: View {
                 }
                                 
                 if isCustom {
-                    EditableStatView(sheet: item, key: .name)
+                    StatView(sheet: item, key: .name)
                         .multilineTextAlignment(.leading)
                 }
             } else {

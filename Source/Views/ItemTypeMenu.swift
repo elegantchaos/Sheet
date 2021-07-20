@@ -24,7 +24,7 @@ struct ItemTypeMenu<Label>: View where Label:View  {
             ForEach(items.itemIds, id: \.self) { itemID in
                 if let item = items.item(withID: itemID) {
                     Button(action: { action(itemID) }) {
-                        StatView(value: item.string(forKey:.name))
+                        TypedView(value: item.string(forKey:.name))
                     }
                 }
             }

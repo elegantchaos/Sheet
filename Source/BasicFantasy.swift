@@ -168,13 +168,13 @@ class BasicFantasy: ObservableObject, GameRules {
     }
     
     func randomize(item: Record) {
-        item.set(Int.random(in: 1...100), forKey: .itemWeight)
-        item.set(Int.random(in: 0...1), forKey: .itemEquipped)
-        item.set(Int.random(in: 12...18), forKey: .armourClass)
-        item.set(Int.random(in: 0...1), forKey: .armourAdjustment)
-        item.set(Int.random(in: 0...1), forKey: .meleeAdjustment)
-        item.set(Int.random(in: 0...1), forKey: .rangedAdjustment)
-        item.set(Int.random(in: 0...1), forKey: .damageAdjustment)
+//        item.set(Double.random(in: 1...100), forKey: .itemWeight)
+        item.set(Bool.random(), forKey: .itemEquipped)
+//        item.set(Int.random(in: 12...18), forKey: .armourClass)
+//        item.set(Int.random(in: 0...1), forKey: .armourAdjustment)
+//        item.set(Int.random(in: 0...1), forKey: .meleeAdjustment)
+//        item.set(Int.random(in: 0...1), forKey: .rangedAdjustment)
+//        item.set(Int.random(in: 0...1), forKey: .damageAdjustment)
         
         let itemType = itemIndex.item(withID: itemIndex.randomItemID)
         item.prototype = itemType

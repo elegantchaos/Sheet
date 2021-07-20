@@ -37,8 +37,16 @@ public final class Record: NSManagedObject, IdentifiedManagedObject {
         return stats.contains(where: { $0.key == key })
     }
     
+    func entry(forKey key: String) -> RecordEntry? {
+        if let stats = entries as? Set<RecordEntry>, let stat = stats.first(where: { $0.key == key }) {
+            return stat
+        }
+
+        return prototype?.entry(forKey: key)
+    }
+    
     func stat(forKey key: String) -> Any? {
-        guard let stats = entries as? Set<RecordEntry>, let stat = stats.first(where: { $0.key == key }) else { return nil }
+        guard let stat = entry(forKey: key) else { return nil }
         guard let type = EntryType(rawValue: Int(stat.type)) else { return nil }
         switch type {
             case .integer: return Int(stat.integer)

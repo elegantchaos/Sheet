@@ -17,7 +17,7 @@ struct SheetView: View {
         VStack {
             HStack {
                 Spacer()
-                EditableStatView(sheet: sheet, key: .name)
+                StatView(sheet: sheet, key: .name)
                     .focused($nameFocussed)
                 Spacer()
             }

@@ -6,28 +6,21 @@
 import Foundation
 import SwiftUI
 
+
 struct StatView: View {
-    let value: Any?
+    @EnvironmentObject var context: Context
+    @ObservedObject var sheet: Record
+    let key: GameSystem.Stat
     
     var body: some View {
-        switch value {
-            case is String:
-                Text(value as! String)
-                
-            case is Int:
-                Text(value as! Int, format: .number)
-
-            case is Binding<String>:
-                EditableStringView(value: value as! Binding<String>)
-
-            case is Binding<Int>:
-                EditableIntegerView(value: value as! Binding<Int>)
-                
-            case let carried as WeightCarried:
-                WeightCarriedView(carried: carried)
-                
-            default:
-                Text("<unknown type>")
+        let isEditable = context.editing && !key.isCalculated
+        if isEditable, let binding = sheet.binding(forKey: key) {
+            TypedView(value: binding)
+        } else if let stat = sheet.stat(forKey: key) {
+            TypedView(value: stat)
+        } else {
+            Image(systemName: "exclamationmark.triangle")
+                .accessibilityHint("no value for \(key.rawValue)")
         }
     }
 }

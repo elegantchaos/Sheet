@@ -6,5 +6,5 @@
 import SwiftUI
 
 class Context: ObservableObject {
-    @Published var editing = false
+    @AppStorage("editing") var editing = false
 }

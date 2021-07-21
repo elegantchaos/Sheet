@@ -1,12 +1,10 @@
-//
-//  SheetHeaderView.swift
-//  SheetHeaderView
-//
-//  Created by Sam Deane on 15/07/2021.
-//  Copyright © 2021 Elegant Chaos. All rights reserved.
-//
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+//  Created by Sam Deane on 21/07/21.
+//  All code (c) 2021 - present day, Elegant Chaos Limited.
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import Foundation
+import Records
 import SwiftUI
 
 struct SheetHeaderView: View {

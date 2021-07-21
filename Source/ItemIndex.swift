@@ -5,6 +5,7 @@
 
 import Foundation
 import CoreData
+import Records
 
 class ItemIndex {
     struct CodedItem: Codable {

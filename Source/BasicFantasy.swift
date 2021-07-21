@@ -6,6 +6,7 @@
 import Foundation
 import UIKit
 import SwiftUI
+import Records
 
 protocol RawIdentifiable: RawRepresentable, Identifiable { }
 
@@ -13,7 +14,7 @@ extension RawIdentifiable where RawValue == ID {
     var id: ID { rawValue }
 }
 
-class BasicFantasy: ObservableObject, GameRules {
+public class BasicFantasy: ObservableObject, GameRules {
     let savingThrows: SavingThrowTable
     let itemIndex: ItemIndex
 

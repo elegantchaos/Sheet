@@ -5,7 +5,7 @@
 
 import Foundation
 import SwiftUI
-
+import Records
 
 struct StatView: View {
     @EnvironmentObject var context: Context

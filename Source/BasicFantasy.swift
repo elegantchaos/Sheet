@@ -49,6 +49,7 @@ public class BasicFantasy: ObservableObject, GameRules {
         case capacityLight
         case capacityHeavy
         case weightCarried
+        case itemTotalWeight
         
         
         // items
@@ -88,7 +89,7 @@ public class BasicFantasy: ObservableObject, GameRules {
             switch self {
                 case .hitsAndDamage,
                         .capacityLight, .capacityHeavy, .weightCarried,
-                        .movement:
+                        .movement, .itemTotalWeight:
                     return true
                     
                 default:

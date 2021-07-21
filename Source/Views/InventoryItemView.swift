@@ -13,10 +13,20 @@ struct InventoryItemView: View {
     var body: some View {
         let count = item.integer(forKey: .itemCount) ?? 0
         return HStack {
-            if context.editing || count > 1 {
+            if context.editing {
+                Stepper(value: item.integerBinding(forKey: .itemCount)) {
+                    Text("")
+                }
+                .labelsHidden()
+
                 StatView(sheet: item, key: .itemCount)
-                Text("×")
+                    .frame(maxWidth: 64.0)
+            } else {
+                Text(count, format: .number)
             }
+            
+
+            Text("×")
 
             ItemTypeView(item: item)
 //            EditableStatView(sheet: item, key: .itemType)
@@ -24,14 +34,14 @@ struct InventoryItemView: View {
             Spacer()
 
 
-            let weight = item.double(forKey: .itemWeight) ?? 0.0
-            let entryWeight = weight * Double(count)
-            Text(entryWeight, format: .number)
+            let weight = item.double(forKey: .itemTotalWeight) ?? 0
+            Text(weight, format: .number)
 
             if context.editing {
                 StatView(sheet: item, key: .itemWeight)
                 StatView(sheet: item, key: .itemEquipped)
             }
         }
+        .controlSize(.mini)
     }
 }

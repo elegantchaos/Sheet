@@ -19,3 +19,4 @@ dragonBreath = "Dragon Breath";
 spells = "Spells";
 
 weightCarried = "carried";
+carrying = "extra weight";

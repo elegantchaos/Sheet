@@ -5,6 +5,7 @@
 
 import Foundation
 import Records
+import SwiftUI
 
 typealias CharacterSheet = Record
 
@@ -17,6 +18,14 @@ extension Record {
         stat(forKey: key) as? Int
     }
 
+    func integerBinding(forKey key: GameSystem.Stat) -> Binding<Int> {
+        integerBinding(forKey: key.rawValue)
+    }
+
+    func stringBinding(forKey key: GameSystem.Stat) -> Binding<String> {
+        stringBinding(forKey: key.rawValue)
+    }
+    
     func double(forKey key: GameSystem.Stat) -> Double? {
         stat(forKey: key) as? Double
     }
@@ -71,12 +80,12 @@ extension Record {
         }
     }
 
-    func modifiedCarryingCapacity(base: Int) -> Int {
+    func modifiedCarryingCapacity(base: Double) -> Double {
         let modifier = Double(modifierOffset(for: .strength))
         let multiplier = 1.0 + ((modifier > 0) ? (0.1 * modifier) : (-0.2 * modifier))
-        let modified = Double(base) * multiplier
+        let modified = base * multiplier
         let rounded = Int(modified / 5.0) * 5
-        return rounded
+        return Double(rounded)
     }
     
     var isHalfling: Bool { string(forKey: .race)?.lowercased() == "halfling" }
@@ -92,12 +101,19 @@ extension Record {
             case .capacityHeavy:    return capacityHeavy
             case .weightCarried:    return weightCarried
             case .movement:         return movement
-
+            case .itemTotalWeight:  return itemTotalWeight
+                
             default:
                 return stat(forKey: key.rawValue)
         }
     }
 
+    var itemTotalWeight: Double {
+        let count = integer(forKey: .itemCount) ?? 1
+        let weight = double(forKey: .itemWeight) ?? 0.0
+        return weight * Double(count)
+    }
+    
     var movement: String {
         let baseMovement: Int
         switch weightCarried.status {
@@ -120,19 +136,19 @@ extension Record {
         return "\(hits - damage) / \(hits)"
     }
     
-    var capacityLight: Int {
+    var capacityLight: Double {
         return modifiedCarryingCapacity(base: isHalfling ? 50 : 60)
     }
     
-    var capacityHeavy: Int {
+    var capacityHeavy: Double {
         return modifiedCarryingCapacity(base: isHalfling ? 100 : 150)
     }
     
-    var itemsWeight: Int {
-        var weight = 0
+    var itemsWeight: Double {
+        var weight = 0.0
         if let items = stat(forKey: .items) as? Set<Record> {
             for item in items {
-                weight += item.integer(forKey: .itemWeight) ?? 0
+                weight += item.double(forKey: .itemTotalWeight) ?? 0
             }
         }
         
@@ -140,7 +156,7 @@ extension Record {
     }
     
     var weightCarried: WeightCarried {
-        var carrying = integer(forKey: .carrying) ?? 0
+        var carrying = double(forKey: .carrying) ?? 0.0
         carrying += itemsWeight
         
         let status: WeightCarried.Status

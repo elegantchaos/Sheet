@@ -22,6 +22,6 @@ struct WeightCarried {
         }
     }
 
-    let amount: Int
+    let amount: Double
     let status: Status
 }

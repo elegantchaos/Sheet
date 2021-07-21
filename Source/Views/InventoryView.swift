@@ -48,10 +48,14 @@ struct InventoryView: View {
 
     func handleAddItem(_ id: String?) {
         let item = Record(context: sheet.managedObjectContext!)
-        item.set("Untitled Item", forKey: .name)
         item.set(1, forKey: .itemCount)
+        if let typeID = id, let itemType = system.itemIndex.item(withID: typeID) {
+            item.prototype = itemType
+        } else {
+            item.prototype = nil
+        }
+
         sheet.append(item, forKey: .items)
-        system.randomize(item: item)
         try? sheet.save()
     }
     

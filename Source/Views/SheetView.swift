@@ -12,9 +12,6 @@ struct SheetView: View {
 
     @ObservedObject var sheet: Record
     @FocusState var nameFocussed: Bool
-
-    @State var confirmationShowing = false
-    @State var confirmationActions = []
     
     var body: some View {
         
@@ -54,20 +51,29 @@ struct SheetView: View {
                     .toggleStyle(SwitchToggleStyle())
             }
 
+            
             ToolbarItem(placement: .bottomBar) {
-                ConfirmedButton(role: .destructive, label: "Randomize", image: "shuffle.circle", confirmation: "Randomize all content?") {
-                    Button("Randomize Content", role: .destructive, action: handleRandomizeConfirmed)
+                HStack {
+                    ConfirmedButton(role: .destructive, label: "Randomize", image: "shuffle.circle", confirmation: "Randomize all content?") {
+                        Button("Randomize Content", role: .destructive, action: handleRandomize)
+                    }
+
+                    Button(action: handleShare) {
+                        Label("Share", systemImage: "square.and.arrow.up")
+                    }
                 }
             }
+
         }
+        .foregroundColor(.primary)
     }
 
     func handleRandomize() {
-            confirmationShowing = true
+            system.randomize(sheet: sheet)
     }
     
-    func handleRandomizeConfirmed() {
-            system.randomize(sheet: sheet)
+    func handleShare() {
+        
     }
 }
 

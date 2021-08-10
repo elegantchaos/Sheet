@@ -22,6 +22,7 @@ struct InventoryView: View {
                             InventoryItemView(item: item)
                                 .listRowSeparator(.hidden)
                                 .listRowInsets(.init(top: 0, leading: 32, bottom: 0, trailing: 0))
+                                .id(item.id)
                         }
                         .onDelete(perform: handleDelete)
                     }
@@ -44,6 +45,12 @@ struct InventoryView: View {
         #else
         .listStyle(.plain)
         #endif
+
+        .sheet(isPresented: .constant(context.itemToEdit != nil)) {
+            InventoryItemEditor(item: context.itemToEdit!)
+                .padding()
+        }
+
     }
 
     func handleAddItem(_ id: String?) {

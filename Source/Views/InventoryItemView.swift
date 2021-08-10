@@ -29,24 +29,54 @@ struct InventoryItemView: View {
                 .frame(width: 48.0)
             }
             
-
             Text("×")
 
             ItemTypeView(item: item)
-//            EditableStatView(sheet: item, key: .itemType)
 
             Spacer()
 
-
             let weight = item.double(forKey: .itemTotalWeight) ?? 0
             Text(weight, format: .number.precision(.fractionLength(2)))
-//            Text(weight, format: .measurement(width: .narrow, usage: .asProvided, numberFormatStyle: .precision(.fractionLength(2))))
 
             if context.editing {
-                StatView(sheet: item, key: .itemWeight)
-                StatView(sheet: item, key: .itemEquipped)
+//                NavigationLink(destination: InventoryItemEditor(item: itemForEditing)) {
+//                    Label("Edit", systemImage: "ellipsis")
+//                }
+                Button(action: handleEdit) {
+                    Label("Edit", systemImage: "ellipsis")
+                }
             }
         }
         .controlSize(.mini)
+        .labelStyle(.iconOnly)
+    }
+    
+    var itemForEditing: Record {
+        return item.prototype ?? item
+    }
+    
+    func handleEdit() {
+        if context.itemToEdit == nil {
+            print("editing \(item.id)")
+            context.itemToEdit = item.prototype ?? item
+        }
+//        showEditSheet = true
+    }
+}
+
+struct InventoryItemEditor: View {
+    @EnvironmentObject var context: Context
+    @ObservedObject var item: Record
+    
+    var body: some View {
+        VStack {
+            StatView(sheet: item, key: .name)
+
+            Spacer()
+
+            Button(action: { context.itemToEdit = nil }) {
+                Text("Done")
+            }
+        }
     }
 }

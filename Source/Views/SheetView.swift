@@ -40,7 +40,6 @@ struct SheetView: View {
             Spacer()
         }
         .exportSheet(for: sheet)
-//        .fileExporter(isPresented: $context.showExportSheet, document: sheet.asJSONFile, contentType: .json, defaultFilename: sheet.jsonExportName, onCompletion: sheet.handleExported)
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
                 Toggle("Edit", isOn: $context.editing)
@@ -59,6 +58,8 @@ struct SheetView: View {
                     ConfirmedButton(role: .destructive, label: "Randomize", image: "shuffle.circle", confirmation: "Randomize all content?") {
                         Button("Randomize Content", role: .destructive, action: handleRandomize)
                     }
+
+                    ImportButton()
 
                     ExportButton()
                 }

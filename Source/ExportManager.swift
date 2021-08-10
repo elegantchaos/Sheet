@@ -12,9 +12,14 @@ import UniformTypeIdentifiers
 
 class ExportManager: ObservableObject {
     @Published var showExportSheet = false
-    
-    func handleShowSheet() {
+    @Published var showImportSheet = false
+
+    func handleExport() {
         showExportSheet = true
+    }
+    
+    func handleImport() {
+        showImportSheet = true
     }
 }
 
@@ -22,8 +27,18 @@ struct ExportButton: View {
     @EnvironmentObject var manager: ExportManager
 
     var body: some View {
-        Button(action: manager.handleShowSheet) {
+        Button(action: manager.handleExport) {
             Label("Share", systemImage: "square.and.arrow.up")
+        }
+    }
+}
+
+struct ImportButton: View {
+    @EnvironmentObject var manager: ExportManager
+
+    var body: some View {
+        Button(action: manager.handleImport) {
+            Label("Import", systemImage: "square.and.arrow.down")
         }
     }
 }
@@ -34,6 +49,7 @@ struct ExportViewModifier: ViewModifier {
 
     func body(content: Content) -> some View {
         content
+            .fileImporter(isPresented: $manager.showImportSheet, allowedContentTypes: [.json], onCompletion: sheet.handleImport)
             .fileExporter(isPresented: $manager.showExportSheet, document: JSONFile(provider: sheet), contentType: .json, defaultFilename: sheet.jsonExportName, onCompletion: sheet.handleExported)
 
     }

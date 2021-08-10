@@ -7,18 +7,26 @@ import Records
 import SwiftUI
 
 struct InventoryItemEditorView: View {
-    @EnvironmentObject var context: Context
+    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var item: Record
     
     var body: some View {
         VStack {
             StatView(sheet: item, key: .name)
 
+            if let prototype = item.prototype, let name = prototype.string(forKey: .name) {
+                Text("Based on \(name).")
+            }
+            
             Spacer()
 
-            Button(action: { context.itemToEdit = nil }) {
+            Button(action: handleDismiss) {
                 Text("Done")
             }
         }
+    }
+    
+    func handleDismiss() {
+        presentationMode.wrappedValue.dismiss()
     }
 }

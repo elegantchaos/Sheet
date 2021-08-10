@@ -13,32 +13,21 @@ struct ItemTypeView: View {
     @ObservedObject var item: Record
     
     var body: some View {
-        let label: String
-        let isCustom: Bool
-
-        if let itemType = item.prototype, let name = itemType.string(forKey: .name) {
-            label = name
-            isCustom = false
-        } else if !context.editing, let name = item.string(forKey: .name) {
-            label = name
-            isCustom = true
-        } else {
-            label = "Custom:"
-            isCustom = true
-        }
-        
         return HStack {
             if context.editing {
+                StatView(sheet: item, key: .name)
+                    .multilineTextAlignment(.leading)
+
+                let typeLabel = item.prototype?.string(forKey: .name) ?? "Custom"
                 ItemTypeMenu(action: handleSetType) {
-                    Text(label)
+                    Text("Type: \(typeLabel)")
+                        .foregroundColor(.accentColor)
                 }
                                 
-                if isCustom {
-                    StatView(sheet: item, key: .name)
-                        .multilineTextAlignment(.leading)
-                }
             } else {
-                Text(label)
+                let name = item.string(forKey: .name) ?? ""
+                let fallback = item.prototype?.string(forKey: .name) ?? "Untitled"
+                Text(name.isEmpty ? fallback : name)
             }
         }
     }

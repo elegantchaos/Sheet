@@ -46,11 +46,6 @@ struct InventoryView: View {
         .listStyle(.plain)
         #endif
 
-        .sheet(isPresented: .constant(context.itemToEdit != nil)) {
-            InventoryItemEditorView(item: context.itemToEdit!)
-                .padding()
-        }
-
     }
 
     func handleAddItem(_ id: String?) {

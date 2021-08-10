@@ -9,6 +9,7 @@ import SwiftUI
 struct InventoryItemView: View {
     @EnvironmentObject var context: Context
     @ObservedObject var item: Record
+    @State var showItemEditor = false
     
     var body: some View {
         let count = item.integer(forKey: .itemCount) ?? 0
@@ -18,7 +19,7 @@ struct InventoryItemView: View {
                     Text("")
                 }
                 .labelsHidden()
-
+                
                 StatView(sheet: item, key: .itemCount)
                     .frame(maxWidth: 64.0)
             } else {
@@ -30,35 +31,28 @@ struct InventoryItemView: View {
             }
             
             Text("×")
-
+            
             ItemTypeView(item: item)
-
+            
             Spacer()
-
+            
             let weight = item.double(forKey: .itemTotalWeight) ?? 0
             Text(weight, format: .number.precision(.fractionLength(2)))
-
+            
             if context.editing {
-//                Button(action: handleEdit) {
-                    Label("Edit", systemImage: "ellipsis")
-                        .onTapGesture {
-                            handleEdit()
-                        }
-//                }
+                Label("Edit", systemImage: "ellipsis")
+                    .onTapGesture(perform: handleEdit)
+                    .sheet(isPresented: $showItemEditor) {
+                        InventoryItemEditorView(item: item)
+                            .padding()
+                    }
             }
         }
         .controlSize(.mini)
         .labelStyle(.iconOnly)
     }
     
-    var itemForEditing: Record {
-        return item.prototype ?? item
-    }
-    
     func handleEdit() {
-        if context.itemToEdit == nil {
-            print("editing \(item.id)")
-            context.itemToEdit = item.prototype ?? item
-        }
+        showItemEditor = true
     }
 }

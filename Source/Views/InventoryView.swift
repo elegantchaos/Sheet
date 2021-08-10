@@ -16,7 +16,7 @@ struct InventoryView: View {
     var body: some View {
         return List {
             Section {
-                if let items = sheet.stat(forKey: .items) as? Set<Record>, let sorted = Array(items) {
+                if let items = sheet.stat(forKey: .items) as? Set<Record>, let sorted = Array(items).sorted(by: { $0.id < $1.id }) {
                     VStack(alignment: .leading, spacing: 0) {
                         ForEach(sorted) { item in
                             InventoryItemView(item: item)
@@ -47,7 +47,7 @@ struct InventoryView: View {
         #endif
 
         .sheet(isPresented: .constant(context.itemToEdit != nil)) {
-            InventoryItemEditor(item: context.itemToEdit!)
+            InventoryItemEditorView(item: context.itemToEdit!)
                 .padding()
         }
 

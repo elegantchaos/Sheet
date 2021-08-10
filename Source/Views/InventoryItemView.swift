@@ -39,12 +39,12 @@ struct InventoryItemView: View {
             Text(weight, format: .number.precision(.fractionLength(2)))
 
             if context.editing {
-//                NavigationLink(destination: InventoryItemEditor(item: itemForEditing)) {
-//                    Label("Edit", systemImage: "ellipsis")
-//                }
-                Button(action: handleEdit) {
+//                Button(action: handleEdit) {
                     Label("Edit", systemImage: "ellipsis")
-                }
+                        .onTapGesture {
+                            handleEdit()
+                        }
+//                }
             }
         }
         .controlSize(.mini)
@@ -59,24 +59,6 @@ struct InventoryItemView: View {
         if context.itemToEdit == nil {
             print("editing \(item.id)")
             context.itemToEdit = item.prototype ?? item
-        }
-//        showEditSheet = true
-    }
-}
-
-struct InventoryItemEditor: View {
-    @EnvironmentObject var context: Context
-    @ObservedObject var item: Record
-    
-    var body: some View {
-        VStack {
-            StatView(sheet: item, key: .name)
-
-            Spacer()
-
-            Button(action: { context.itemToEdit = nil }) {
-                Text("Done")
-            }
         }
     }
 }

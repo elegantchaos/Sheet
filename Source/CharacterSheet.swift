@@ -147,6 +147,12 @@ extension Record {
         return modifiedCarryingCapacity(base: isHalfling ? 100 : 150)
     }
     
+    var sortName: String {
+        if let name = string(forKey: .name), !name.isEmpty { return name }
+        if let name = prototype?.string(forKey: .name), !name.isEmpty { return name }
+        return "Untitled"
+    }
+    
     var itemsWeight: Double {
         var weight = 0.0
         if let items = stat(forKey: .items) as? Set<Record> {
@@ -199,36 +205,6 @@ extension Record {
 
 }
 
-// MARK: Generic Export
-
-extension Record {
-    var asRecord: [String:Any] {
-        var record: [String:Any] = [:]
-
-//        record["id"] = id
-        
-        if let prototype = prototype {
-            record["type"] = prototype.id
-        }
-        
-        if let entries = entries as? Set<RecordEntry> {
-            for entry in entries {
-                if let key = entry.key {
-                    let value = stat(forKey: key)
-                    if let array = value as? Set<Record> {
-                        let values = array.map { $0.asRecord }
-                        record[key] = values
-                    } else {
-                        record[key] = value
-                    }
-                }
-            }
-        }
-        
-        return record
-    }
-}
-
 // MARK: JSON Export
 
 extension Record: JSONDataProvider {
@@ -239,16 +215,48 @@ extension Record: JSONDataProvider {
     
     var asJSONData: Data {
         do {
-            return try JSONSerialization.data(withJSONObject: asRecord, options: .prettyPrinted)
+            return try JSONSerialization.data(withJSONObject: asDictionary(includeID: false), options: [.prettyPrinted, .sortedKeys])
         } catch {
+            print(error) // TODO: handle properly
             return Data()
         }
     }
 
     func set(fromJSONData data: Data) {
-        
+        do {
+            let decoded = try JSONSerialization.jsonObject(with: data, options: .json5Allowed)
+            if let dictionary = decoded as? [String:Any] {
+                setFromDictionary(dictionary)
+            } else {
+                report(error: BadFormatError())
+            }
+        } catch {
+            report(error: error)
+        }
     }
     
-    func handleExported(_ result: Result<URL, Error>) {
+    func handleImport(_ result: Result<URL, Error>) {
+        switch result {
+            case .success(let url):
+                do {
+                    set(fromJSONData: try Data(contentsOf: url))
+                } catch {
+                    report(error: error)
+                }
+                
+            case .failure(let error):
+                report(error: error)
+        }
     }
+
+    func handleExported(_ result: Result<URL, Error>) {
+        print(result)
+    }
+
+    struct BadFormatError: Error { }
+
+    func report(error: Error) {
+        print(error) // TODO: handle this properly
+    }
+
 }

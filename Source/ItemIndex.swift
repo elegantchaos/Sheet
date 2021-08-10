@@ -21,7 +21,7 @@ class ItemIndex {
     fileprivate var items: [String: Record]
 
     var itemIds: [String] {
-        return Array(items.keys)
+        return items.keys.sorted(by: { $0 < $1 })
     }
     
     convenience init(name: String = "ItemTypes", bundle: Bundle = .main) throws {

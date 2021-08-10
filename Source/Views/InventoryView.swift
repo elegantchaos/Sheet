@@ -16,7 +16,7 @@ struct InventoryView: View {
     var body: some View {
         return List {
             Section {
-                if let items = sheet.stat(forKey: .items) as? Set<Record>, let sorted = Array(items).sorted(by: { $0.id < $1.id }) {
+                if let sorted = sortedItems {
                     VStack(alignment: .leading, spacing: 0) {
                         ForEach(sorted) { item in
                             InventoryItemView(item: item)
@@ -48,6 +48,13 @@ struct InventoryView: View {
 
     }
 
+    var sortedItems: [Record]? {
+        guard let items = sheet.stat(forKey: .items) as? Set<Record> else { return nil }
+        let sorted = items.sorted(by: { $0.sortName < $1.sortName })
+        print(sorted.map { $0.sortName })
+        return sorted
+    }
+    
     func handleAddItem(_ id: String?) {
         let item = Record(context: sheet.managedObjectContext!)
         item.set(1, forKey: .itemCount)

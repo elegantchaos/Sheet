@@ -72,11 +72,6 @@ struct SheetView: View {
             system.randomize(sheet: sheet)
     }
     
-    var exportDocument: JSONFile? {
-        let json = ""
-        
-        return JSONFile(initialText: json)
-    }
 }
 
 struct SheetView_Previews: PreviewProvider {

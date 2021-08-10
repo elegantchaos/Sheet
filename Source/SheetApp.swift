@@ -12,6 +12,8 @@ typealias GameSystem = BasicFantasy
 struct SheetApp: App {
     let persistenceController = PersistenceController.shared
     let context = Context()
+    let exportManager = ExportManager()
+    
     let system: GameSystem
     
     init() {
@@ -31,6 +33,7 @@ struct SheetApp: App {
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(context)
                 .environmentObject(system)
+                .environmentObject(exportManager)
         }
     }
 }

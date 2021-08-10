@@ -199,23 +199,56 @@ extension Record {
 
 }
 
-// MARK: JSON Export
+// MARK: Generic Export
 
 extension Record {
+    var asRecord: [String:Any] {
+        var record: [String:Any] = [:]
+
+//        record["id"] = id
+        
+        if let prototype = prototype {
+            record["type"] = prototype.id
+        }
+        
+        if let entries = entries as? Set<RecordEntry> {
+            for entry in entries {
+                if let key = entry.key {
+                    let value = stat(forKey: key)
+                    if let array = value as? Set<Record> {
+                        let values = array.map { $0.asRecord }
+                        record[key] = values
+                    } else {
+                        record[key] = value
+                    }
+                }
+            }
+        }
+        
+        return record
+    }
+}
+
+// MARK: JSON Export
+
+extension Record: JSONDataProvider {
     var jsonExportName: String {
         let name = string(forKey: .name) ?? "Untitled"
         return "\(name) Export"
     }
     
-    var asJSONFile: JSONFile {
-        JSONFile(initialText: asJSON)
+    var asJSONData: Data {
+        do {
+            return try JSONSerialization.data(withJSONObject: asRecord, options: .prettyPrinted)
+        } catch {
+            return Data()
+        }
     }
-    
-    var asJSON: String {
-        ""
+
+    func set(fromJSONData data: Data) {
+        
     }
     
     func handleExported(_ result: Result<URL, Error>) {
-        
     }
 }

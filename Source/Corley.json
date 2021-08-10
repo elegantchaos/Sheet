@@ -1,9 +1,63 @@
-//
-//  Corley.swift
-//  Corley
-//
-//  Created by Sam Deane on 10/08/2021.
-//  Copyright © 2021 Elegant Chaos. All rights reserved.
-//
-
-import Foundation
+{
+  "age" : 21,
+  "carrying" : 0,
+  "charisma" : 10,
+  "class" : "mage",
+  "constitution" : 10,
+  "damage" : 5,
+  "dexterity" : 12,
+  "gender" : "male",
+  "hits" : 32,
+  "intelligence" : 16,
+  "items" : [
+    {
+      "itemCount" : 1,
+      "itemEquipped" : 0,
+      "name" : "",
+      "type" : "item-ladder"
+    },
+    {
+      "itemCount" : 1,
+      "itemEquipped" : 0,
+      "name" : "",
+      "type" : "item-lantern"
+    },
+    {
+      "itemCount" : 1,
+      "itemEquipped" : 0,
+      "name" : "",
+      "type" : "item-mirror"
+    },
+    {
+      "itemCount" : 1,
+      "itemEquipped" : 1,
+      "itemWeight" : 1,
+      "name" : "Custom cloak",
+      "type" : "item-cloak"
+    },
+    {
+      "itemCount" : 1,
+      "itemEquipped" : 0,
+      "name" : "",
+      "type" : "item-cloak"
+    },
+    {
+      "itemCount" : 1,
+      "itemEquipped" : 1,
+      "name" : "",
+      "type" : "item-mapcase"
+    },
+    {
+      "itemCount" : 1,
+      "itemEquipped" : 0,
+      "name" : "",
+      "type" : "item-lantern"
+    }
+  ],
+  "level" : 8,
+  "name" : "Corley Michaelone",
+  "race" : "human",
+  "strength" : 10,
+  "wisdom" : 10,
+  "xp" : 0
+}

@@ -22,7 +22,11 @@ struct InventoryItemView: View {
                 StatView(sheet: item, key: .itemCount)
                     .frame(maxWidth: 64.0)
             } else {
-                Text(count, format: .number)
+                HStack {
+                    Spacer()
+                    Text(count, format: .number)
+                }
+                .frame(width: 48.0)
             }
             
 
@@ -35,7 +39,8 @@ struct InventoryItemView: View {
 
 
             let weight = item.double(forKey: .itemTotalWeight) ?? 0
-            Text(weight, format: .number)
+            Text(weight, format: .number.precision(.fractionLength(2)))
+//            Text(weight, format: .measurement(width: .narrow, usage: .asProvided, numberFormatStyle: .precision(.fractionLength(2))))
 
             if context.editing {
                 StatView(sheet: item, key: .itemWeight)

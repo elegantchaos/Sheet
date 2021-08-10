@@ -1,12 +1,12 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-//  Created by Sam Deane on 14/07/21.
+//  Created by Sam Deane on 10/08/21.
 //  All code (c) 2021 - present day, Elegant Chaos Limited.
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 import SwiftUI
 
-struct EditableIntegerView: View {
-    @Binding var value: Int
+struct EditableDoubleView: View {
+    @Binding var value: Double
     let placeholder: String
 
     var body: some View {
@@ -20,8 +20,8 @@ struct EditableIntegerView: View {
         return Binding<String>(
             get: { String(value) },
             set: { newValue in
-                if let integer = Int(newValue) {
-                    value = integer
+                if let double = Double(newValue) {
+                    value = double
                 }
             }
         )

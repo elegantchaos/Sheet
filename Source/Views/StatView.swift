@@ -15,7 +15,7 @@ struct StatView: View {
     var body: some View {
         let isEditable = context.editing && !key.isCalculated
         if isEditable, let binding = sheet.binding(forKey: key) {
-            TypedView(value: binding)
+            TypedView(value: binding, placeholder: sheet.prototype?.stat(forKey: key))
         } else if let stat = sheet.stat(forKey: key) {
             TypedView(value: stat)
         } else {

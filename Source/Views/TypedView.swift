@@ -8,6 +8,16 @@ import SwiftUI
 
 struct TypedView: View {
     let value: Any?
+    let placeholder: String
+    
+    init(value: Any?, placeholder: Any? = nil) {
+        self.value = value
+        if let placeholder = placeholder {
+            self.placeholder = String(describing: placeholder)
+        } else {
+            self.placeholder = ""
+        }
+    }
     
     var body: some View {
         switch value {
@@ -17,17 +27,31 @@ struct TypedView: View {
             case is Int:
                 Text(value as! Int, format: .number)
 
+            case is Double:
+                Text(value as! Double, format: .number)
+
             case is Binding<String>:
-                EditableStringView(value: value as! Binding<String>)
+                EditableStringView(value: value as! Binding<String>, placeholder: placeholder)
 
             case is Binding<Int>:
-                EditableIntegerView(value: value as! Binding<Int>)
-                
+                EditableIntegerView(value: value as! Binding<Int>, placeholder: placeholder)
+
+            case is Binding<Double>:
+                EditableDoubleView(value: value as! Binding<Double>, placeholder: placeholder)
+
             case let carried as WeightCarried:
                 WeightCarriedView(carried: carried)
                 
             default:
-                Text("<unknown type>")
+                Text("<\(unknownTypeLabel)>")
+        }
+    }
+    
+    var unknownTypeLabel: String {
+        if let value = value {
+            return String(describing: type(of: value))
+        } else {
+            return "nil"
         }
     }
 }

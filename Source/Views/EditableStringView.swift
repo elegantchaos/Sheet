@@ -7,9 +7,10 @@ import SwiftUI
 
 struct EditableStringView: View {
     @Binding var value: String
-
+    let placeholder: String
+    
     var body: some View {
-        TextField("Name", text: $value)
+        TextField(placeholder, text: $value)
             .background(Color.gray.opacity(0.1))
             .autocapitalization(.none)
             .disableAutocorrection(true)

@@ -31,6 +31,7 @@ public class BasicFantasy: ObservableObject, GameRules {
         case `class`
         case level
         case age
+        case xp
         case hits
         case damage
         case carrying
@@ -98,8 +99,8 @@ public class BasicFantasy: ObservableObject, GameRules {
         }
     }
     
-    let topStatsViewing: [Stat] = [.race, .gender, .class, .level, .age, .weightCarried, .hitsAndDamage, .movement]
-    let topStatsEditing: [Stat] = [.race, .gender, .class, .level, .age, .carrying, .damage, .movement]
+    let topStatsViewing: [Stat] = [.race, .gender, .class, .level, .age, .xp, .weightCarried, .hitsAndDamage, .movement]
+    let topStatsEditing: [Stat] = [.race, .gender, .class, .level, .age, .xp, .carrying, .damage, .movement]
     let abilityStats: [Stat] = [.strength, .intelligence, .wisdom, .dexterity, .constitution, .charisma]
     
     enum CharacterClass: String, CaseIterable, RawIdentifiable, Codable {
@@ -154,6 +155,7 @@ public class BasicFantasy: ObservableObject, GameRules {
         sheet.set(BasicFantasy.CharacterClass.allCases.randomElement()!.rawValue, forKey: .class)
         sheet.set(Int.random(in: 1...20), forKey: .level)
         sheet.set(Int.random(in: 16...100), forKey: .age)
+        sheet.set(Int.random(in: 1...100000), forKey: .xp)
         let hits = Int.random(in: 16...100)
         sheet.set(hits, forKey: .hits)
         sheet.set(Int.random(in: 0...hits), forKey: .damage)

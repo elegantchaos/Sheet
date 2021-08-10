@@ -29,6 +29,7 @@
 		8B1E857F26A72D4100E14DBD /* CoreDataExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 8B1E857E26A72D4100E14DBD /* CoreDataExtensions */; };
 		8B1E858426A8299500E14DBD /* Records in Frameworks */ = {isa = PBXBuildFile; productRef = 8B1E858326A8299500E14DBD /* Records */; };
 		8B1E858726A8365A00E14DBD /* Records in Frameworks */ = {isa = PBXBuildFile; productRef = 8B1E858626A8365A00E14DBD /* Records */; };
+		8B251CC826C291C6003EB1C9 /* ConfirmedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B251CC726C291C6003EB1C9 /* ConfirmedButton.swift */; };
 		8BFAF4DD26A095000096893C /* SheetHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFAF4DC26A095000096893C /* SheetHeaderView.swift */; };
 		8BFAF4DF26A097D50096893C /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFAF4DE26A097D50096893C /* InventoryView.swift */; };
 		8BFDFDDB269DA25D0091F150 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BFDFDDA269DA25D0091F150 /* Tests_iOS.swift */; };
@@ -70,6 +71,7 @@
 		8B184EFE26A1E3CF00D4687E /* InventoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryItemView.swift; sourceTree = "<group>"; };
 		8B184F0826A5976100D4687E /* ItemTypeMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTypeMenu.swift; sourceTree = "<group>"; };
 		8B1E857826A728F800E14DBD /* ItemIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemIndex.swift; path = Source/ItemIndex.swift; sourceTree = SOURCE_ROOT; };
+		8B251CC726C291C6003EB1C9 /* ConfirmedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmedButton.swift; sourceTree = "<group>"; };
 		8BFAF4DC26A095000096893C /* SheetHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetHeaderView.swift; sourceTree = "<group>"; };
 		8BFAF4DE26A097D50096893C /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
 		8BFDFDC3269DA25B0091F150 /* SheetApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetApp.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				8B184F0826A5976100D4687E /* ItemTypeMenu.swift */,
 				8B184EE926A1A0C500D4687E /* StatView.swift */,
 				8B1578E6269F06DD00073D0F /* EditableIntegerView.swift */,
+				8B251CC726C291C6003EB1C9 /* ConfirmedButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				8BFDFDEA269DA25D0091F150 /* ContentView.swift in Sources */,
 				8B184EEA26A1A0C500D4687E /* StatView.swift in Sources */,
 				8B184EF226A1B7F400D4687E /* CharacterSheet.swift in Sources */,
+				8B251CC826C291C6003EB1C9 /* ConfirmedButton.swift in Sources */,
 				8B1577BE269DD5CE00073D0F /* AbilitiesView.swift in Sources */,
 				8B1578E1269EF47D00073D0F /* SavingThrowsView.swift in Sources */,
 				8B1578E9269F2A1E00073D0F /* GameRules.swift in Sources */,

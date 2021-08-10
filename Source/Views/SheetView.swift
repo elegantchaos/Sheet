@@ -13,6 +13,9 @@ struct SheetView: View {
     @ObservedObject var sheet: Record
     @FocusState var nameFocussed: Bool
 
+    @State var confirmationShowing = false
+    @State var confirmationActions = []
+    
     var body: some View {
         
         VStack {
@@ -52,13 +55,20 @@ struct SheetView: View {
             }
 
             ToolbarItem(placement: .bottomBar) {
-                Button(action: { system.randomize(sheet: sheet) }) {
-                    Text("Randomize")
+                ConfirmedButton(role: .destructive, label: "Randomize", image: "shuffle.circle", confirmation: "Randomize all content?") {
+                    Button("Randomize Content", role: .destructive, action: handleRandomizeConfirmed)
                 }
             }
         }
     }
 
+    func handleRandomize() {
+            confirmationShowing = true
+    }
+    
+    func handleRandomizeConfirmed() {
+            system.randomize(sheet: sheet)
+    }
 }
 
 struct SheetView_Previews: PreviewProvider {

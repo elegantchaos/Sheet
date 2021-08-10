@@ -39,6 +39,8 @@ struct SheetView: View {
             
             Spacer()
         }
+        .exportSheet(for: sheet)
+//        .fileExporter(isPresented: $context.showExportSheet, document: sheet.asJSONFile, contentType: .json, defaultFilename: sheet.jsonExportName, onCompletion: sheet.handleExported)
         .toolbar {
             ToolbarItem(placement: .bottomBar) {
                 Toggle("Edit", isOn: $context.editing)
@@ -58,9 +60,7 @@ struct SheetView: View {
                         Button("Randomize Content", role: .destructive, action: handleRandomize)
                     }
 
-                    Button(action: handleShare) {
-                        Label("Share", systemImage: "square.and.arrow.up")
-                    }
+                    ExportButton()
                 }
             }
 
@@ -72,8 +72,10 @@ struct SheetView: View {
             system.randomize(sheet: sheet)
     }
     
-    func handleShare() {
+    var exportDocument: JSONFile? {
+        let json = ""
         
+        return JSONFile(initialText: json)
     }
 }
 

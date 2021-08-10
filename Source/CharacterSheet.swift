@@ -70,10 +70,13 @@ extension Record {
         
         switch stat {
             case is String:
-                return stringBinding(forKey:key.rawValue)
+                return stringBinding(forKey: key.rawValue)
                 
             case is Int:
-                return integerBinding(forKey:key.rawValue)
+                return integerBinding(forKey: key.rawValue)
+                
+            case is Double:
+                return doubleBinding(forKey: key.rawValue)
                 
             default:
                 return stat
@@ -194,4 +197,25 @@ extension Record {
         return string
     }
 
+}
+
+// MARK: JSON Export
+
+extension Record {
+    var jsonExportName: String {
+        let name = string(forKey: .name) ?? "Untitled"
+        return "\(name) Export"
+    }
+    
+    var asJSONFile: JSONFile {
+        JSONFile(initialText: asJSON)
+    }
+    
+    var asJSON: String {
+        ""
+    }
+    
+    func handleExported(_ result: Result<URL, Error>) {
+        
+    }
 }

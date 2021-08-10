@@ -37,7 +37,7 @@ struct InventoryItemView: View {
             Spacer()
             
             let weight = item.double(forKey: .itemTotalWeight) ?? 0
-            Text(weight, format: .number.precision(.fractionLength(2)))
+            Text(weight, format: .number.precision(.fractionLength(1)))
             
             if context.editing {
                 Label("Edit", systemImage: "ellipsis")

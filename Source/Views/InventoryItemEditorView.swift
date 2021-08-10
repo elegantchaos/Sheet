@@ -12,14 +12,27 @@ struct InventoryItemEditorView: View {
     
     var body: some View {
         VStack {
-            StatView(sheet: item, key: .name)
 
-            if let prototype = item.prototype, let name = prototype.string(forKey: .name) {
+            if let name = item.prototype?.string(forKey: .name) {
                 Text("Based on \(name).")
             }
             
             Spacer()
 
+            let props: [GameSystem.Stat] = [.name, .itemCount, .itemWeight, .itemEquipped, .itemGuidePrice]
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())]) {
+                ForEach(props) { prop in
+                    HStack {
+                        Spacer()
+                        Text(prop.rawValue)
+                    }
+
+                    StatView(sheet: item, key: prop)
+                }
+            }
+            
+            Spacer()
+            
             Button(action: handleDismiss) {
                 Text("Done")
             }

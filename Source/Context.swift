@@ -8,4 +8,5 @@ import SwiftUI
 
 class Context: ObservableObject {
     @AppStorage("editing") var editing = false
+    @Published var showExportSheet = false    
 }

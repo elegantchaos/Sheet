@@ -8,13 +8,14 @@ import SwiftUI
 
 struct InventoryItemEditorView: View {
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var system: GameSystem
     @ObservedObject var item: Record
     
     var body: some View {
         VStack {
-
-            if let name = item.prototype?.string(forKey: .name) {
-                Text("Based on \(name).")
+            ItemTypeMenu(action: handleSetType) {
+                Text(typeLabel)
+                    .foregroundColor(.accentColor)
             }
             
             Spacer()
@@ -39,7 +40,25 @@ struct InventoryItemEditorView: View {
         }
     }
     
+    var typeLabel: String {
+        let label: String
+        if let type = item.prototype?.string(forKey: .name) {
+            label = "Based on \(type)."
+        } else {
+            label = "Custom Item"
+        }
+        return label
+    }
+    
     func handleDismiss() {
         presentationMode.wrappedValue.dismiss()
+    }
+    
+    func handleSetType(to typeID: String?) {
+        if let typeID = typeID, let itemType = system.itemIndex.item(withID: typeID) {
+            item.prototype = itemType
+        } else {
+            item.prototype = nil
+        }
     }
 }

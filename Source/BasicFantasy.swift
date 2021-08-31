@@ -59,6 +59,7 @@ public class BasicFantasy: ObservableObject, GameRules {
         case itemEquipped
         case itemGuidePrice
         case itemCount
+        case itemStatus
 
         // armour
         case armourClass

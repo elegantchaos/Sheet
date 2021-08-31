@@ -17,12 +17,11 @@ struct InventoryView: View {
         return List {
             Section {
                 if let sorted = sortedItems {
-                    VStack(alignment: .leading, spacing: 0) {
+                    LazyVStack(alignment: .leading, spacing: 0) {
                         ForEach(sorted) { item in
                             InventoryItemView(item: item)
                                 .listRowSeparator(.hidden)
                                 .listRowInsets(.init(top: 0, leading: 32, bottom: 0, trailing: 0))
-                                .id(item.id)
                         }
                         .onDelete(perform: handleDelete)
                     }

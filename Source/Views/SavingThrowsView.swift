@@ -10,9 +10,9 @@ struct SavingThrowsView: View {
     @ObservedObject var sheet: Record
     @EnvironmentObject var system: GameSystem
     
-    static let statFormatter =
-    IntegerFormatStyle()
-        .sign(strategy: .always(includingZero: false))
+//    static let statFormatter =
+//    IntegerFormatStyle()
+//        .sign(strategy: .always(includingZero: false))
     
     var body: some View {
         VStack {

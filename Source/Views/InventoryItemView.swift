@@ -47,6 +47,11 @@ struct InventoryItemView: View {
                             .padding()
                     }
             }
+            
+            ItemStatusMenu(item: item)
+//            let status = ItemStatus(rawValue: item.integer(forKey: .itemStatus) ?? 0) ?? .recorded
+//            Image(systemName: status.imageName)
+//                .onTapGesture(perform: handleToggleStatus)
         }
         .controlSize(.mini)
         .labelStyle(.iconOnly)
@@ -54,5 +59,42 @@ struct InventoryItemView: View {
     
     func handleEdit() {
         showItemEditor = true
+    }
+    
+    func handleToggleStatus() {
+        let newStatus: ItemStatus
+        if let current = item.integer(forKey: .itemStatus), let new = ItemStatus(rawValue: current + 1) {
+            newStatus = new
+        } else {
+            newStatus = .recorded
+        }
+        item.set(newStatus.rawValue, forKey: .itemStatus)
+        print("Updated status for \(item)")
+    }
+}
+
+struct ItemStatusMenu: View {
+    @ObservedObject var item: Record
+
+    var body: some View {
+        Menu {
+            ForEach(ItemStatus.allCases) { status in
+                Button(action: { handleSetStatus(status) }) {
+                    HStack {
+                        Image(systemName: status.imageName)
+                        Text(status.label)
+                    }
+                }
+            }
+        } label: {
+            let status = ItemStatus(rawValue: item.integer(forKey: .itemStatus) ?? 0) ?? .recorded
+            Image(systemName: status.imageName)
+        }
+        .menuStyle(.borderlessButton)
+        .menuIndicator(.visible)
+    }
+    
+    func handleSetStatus(_ status: ItemStatus) {
+        item.set(status.rawValue, forKey: .itemStatus)
     }
 }

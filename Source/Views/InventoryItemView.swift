@@ -14,6 +14,9 @@ struct InventoryItemView: View {
     var body: some View {
         let count = item.integer(forKey: .itemCount) ?? 0
         return HStack {
+            ItemStatusMenu(item: item)
+                .frame(width: 20)
+
             if context.editing {
                 Stepper(value: item.integerBinding(forKey: .itemCount)) {
                     Text("")
@@ -39,16 +42,15 @@ struct InventoryItemView: View {
             let weight = item.double(forKey: .itemTotalWeight) ?? 0
             Text(weight, format: .number.precision(.fractionLength(1)))
             
-            if context.editing {
+//            if context.editing {
                 Label("Edit", systemImage: "ellipsis")
                     .onTapGesture(perform: handleEdit)
                     .sheet(isPresented: $showItemEditor) {
                         InventoryItemEditorView(item: item)
                             .padding()
                     }
-            }
+//            }
             
-            ItemStatusMenu(item: item)
 //            let status = ItemStatus(rawValue: item.integer(forKey: .itemStatus) ?? 0) ?? .recorded
 //            Image(systemName: status.imageName)
 //                .onTapGesture(perform: handleToggleStatus)

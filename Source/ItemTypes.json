@@ -2,18 +2,18 @@
 {
     "backpack": { "name": "Backpack", "price": 4.0, "weight": 0.1 },
     "bandages": { "name": "Bandages", "price": 4.0, "weight": 0.1, "notes": "TBC" },
-    "belt-pouch": { "name": "Belt Pouch", "price": 1.0, "weight": 0.1 },
+    "beltpouch": { "name": "Belt Pouch", "price": 1.0, "weight": 0.1 },
     "bridle": { "name": "Bit and Bridle", "price": 1.5, "weight": 3 },
     "bullseye": { "name": "Bullseye Lantern", "price": 14.0, "weight": 3.0 },
     "candles": { "name": "Candles", "price": 1.0, "quantity": 12, "weight": 0.1 },
     "chalk": { "name": "Chalk", "price": 2.0, "weight": 0.1, "notes": "Small bag of pieces" },
     "cloak": { "name": "Cloak", "price": 2.0, "weight": 1.0 },
     "clothing": { "name": "Clothing", "price": 2, "notes": "Common Outfit" },
-    "cooking-pot": { "name": "Cooking Pot", "price": 4.0, "weight": 0.1, "notes": "TBC" },
+    "cookingpot": { "name": "Cooking Pot", "price": 4.0, "weight": 0.1, "notes": "TBC" },
     "crampons": { "name": "Crampons & Pitons", "price": 4.0, "weight": 0.1, "notes": "TBC" },
     "crowbar": { "name": "Crowbar", "price": 4.0, "weight": 0.1, "notes": "TBC" },
     "fishhooks": { "name": "Fish Hooks", "price": 1.0, "weight": 0.1 },
-    "glass-bottle": { "name": "Glass bottle", "price": 1.0, "weight": 0.1 },
+    "glassbottle": { "name": "Glass bottle", "price": 1.0, "weight": 0.1 },
     "holywater": { "name": "Holy Water, per vial", "price": 10.0, "weight": 0.1 },
     "hooded": { "name": "Hooded Lantern", "price": 8.0, "weight": 2.0 },
     "hook": { "name": "Grappling Hook", "price": 2.0, "weight": 4.0 },
@@ -30,6 +30,35 @@
     "spikes": { "name": "Iron Spikes, 12", "price": 1.0, "quantity": 12, "weight": 1.0 },
     "symbol": { "name": "Holy Symbol", "price": 25.0, "weight": 0.1 },
     "vial": { "name": "Glass vial", "price": 1.0, "weight": 0.1 },
+    
+    "handaxe": { "name": "Hand Axe", "price": 4.0, "weight": 5.0, "weapon": {
+        "size": "small", "damage": "1d6"
+    }},
+
+    "battleaxe": { "name": "Battle Axe", "price": 7.0, "weight": 7.0, "weapon": {
+        "size": "medium", "damage": "1d8"
+    }},
+
+    "greataxe": { "name": "Great Axe", "price": 14.0, "weight": 15.0, "weapon": {
+        "size": "large", "damage": "1d10"
+    }},
+    
+    "shortbow": { "name": "Shortbow", "price": 25.0, "weight": 2.0, "weapon": {
+        "size": "medium", "ammo": "arrow", "short": 50, "medium": 100, "long": 150
+    }},
+
+    "longbow": { "name": "Longbow", "price": 60.0, "weight": 3.0, "weapon": {
+        "size": "medium", "ammo": "arrow", "short": 50, "medium": 100, "long": 150
+    }},
+
+    "lightcrossbow": { "name": "Light Crossbow", "price": 30.0, "weight": 7.0, "weapon": {
+        "size": "medium", "ammo": "arrow", "short": 50, "medium": 100, "long": 150
+    }},
+
+    "heavycrossbow": { "name": "Heavy Crossbow", "price": 50.0, "weight": 14.0, "weapon": {
+        "size": "medium", "ammo": "arrow", "short": 50, "medium": 100, "long": 150
+    }},
+
 }
 
 

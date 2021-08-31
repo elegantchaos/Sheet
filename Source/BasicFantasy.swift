@@ -26,6 +26,7 @@ public class BasicFantasy: ObservableObject, GameRules {
     enum Stat: String, CaseIterable, Identifiable {
         // general
         case name
+        case description
         case race
         case gender
         case `class`
@@ -56,7 +57,6 @@ public class BasicFantasy: ObservableObject, GameRules {
         // items
         case items
         case itemWeight
-        case itemEquipped
         case itemGuidePrice
         case itemCount
         case itemStatus
@@ -66,6 +66,11 @@ public class BasicFantasy: ObservableObject, GameRules {
         case armourAdjustment
 
         // weapons
+        case weaponSize
+        case showRange
+        case mediumRange
+        case longRange
+        case ammunition
         case meleeAdjustment
         case rangedAdjustment
         case damageAdjustment
@@ -174,7 +179,6 @@ public class BasicFantasy: ObservableObject, GameRules {
     
     func randomize(item: Record) {
 //        item.set(Double.random(in: 1...100), forKey: .itemWeight)
-        item.set(Bool.random(), forKey: .itemEquipped)
 //        item.set(Int.random(in: 12...18), forKey: .armourClass)
 //        item.set(Int.random(in: 0...1), forKey: .armourAdjustment)
 //        item.set(Int.random(in: 0...1), forKey: .meleeAdjustment)

@@ -18,9 +18,19 @@ struct InventoryItemEditorView: View {
                     .foregroundColor(.accentColor)
             }
             
+            ItemStatusMenu(item: item)
+
             Spacer()
 
-            let props: [GameSystem.Stat] = [.name, .itemCount, .itemWeight, .itemEquipped, .itemGuidePrice]
+            let props: [GameSystem.Stat] = [
+                .name, .description,
+                .itemCount, .itemWeight, .itemGuidePrice,
+                .armourClass, .armourAdjustment,
+                .meleeAdjustment,
+                .rangedAdjustment,
+                .damageAdjustment,
+            ]
+
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())]) {
                 ForEach(props) { prop in
                     HStack {
